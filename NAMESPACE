@@ -1,1 +1,5 @@
-exportPattern("^[[:alpha:]]+")
+exportClasses(AbstractClass,NamespaceAware,Parent,Content,Document,Namespace,Text,Element,Attribute)
+export(AbstractClass,NamespaceAware,Parent,Content,Document,Namespace,Text,Element,Attribute)
+export(printp,printp0)
+export(hello)
+import(methods)

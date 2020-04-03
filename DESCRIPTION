@@ -1,11 +1,28 @@
 Package: rcdom
-Type: Package
-Title: What the Package Does (Title Case)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
+Date: 2020-04-02
+Title: Read, write and work with XML files
+Author: Per Nyfelt [aut, cre]
+Maintainer: Per Nyfelt <per@alipsa.se>
+Depends: R (>= 3.1.0)
+Description: for creating and reading and manipulating XML 
+  inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
+License: MIT + file LICENSE
+URL: https://github.com/Alipsa/rcdom
+BugReports: https://github.com/Alipsa/rcdom/issues
+Imports:
+    methods
+Suggests: testthat
+Collate:
+  'hello.R'
+  'utils.R'
+  'AbstractClass.R'
+  'NamespaceAware.R'
+  'Parent.R'
+  'Content.R'
+  'Document.R'
+  'Namespace.R'
+  'Text.R'
+  'Element.R'
+  'Attribute.R'
+
