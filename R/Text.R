@@ -1,3 +1,8 @@
+#' Reference class representing text content
+#' @details
+#' An XML character sequence. Provides a modular, parentable method of representing text.
+
+#' @export
 Text <- setRefClass(
   Class = "Text",
   contains = "Content",
@@ -19,12 +24,16 @@ Text <- setRefClass(
   )
 )
 
+#' as.vector for Text classes
+#' @param x the object to convert
 setMethod('as.vector', "Text",
   function(x) {
     x$toString()
   }
 )
 
+#' as.character for Text classes
+#' @param x the object to convert
 setMethod('as.character', "Text",
   function(x) {
     x$toString()

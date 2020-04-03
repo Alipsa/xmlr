@@ -1,3 +1,6 @@
+#' A reference class representing the context (Namespace)
+
+#' @export
 Namespace <- setRefClass(
   Class ="Namespace",
   fields = list(
@@ -33,12 +36,16 @@ Namespace <- setRefClass(
   )
 )
 
+#' as.vector for Namespace classes
+#' @param x the object to convert
 setMethod('as.vector', "Namespace",
   function(x) {
     x$toString()
   }
 )
 
+#' as.character for Namespace classes
+#' @param x the object to convert
 setMethod('as.character', "Namespace",
   function(x) {
     x$toString()

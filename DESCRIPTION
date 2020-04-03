@@ -15,6 +15,7 @@ Imports:
     methods
 Suggests: testthat
 Collate:
+  'rcdom.R'
   'hello.R'
   'utils.R'
   'AbstractClass.R'

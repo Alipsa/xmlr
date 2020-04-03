@@ -1,4 +1,6 @@
-# An abstract class
+#' An abstract class
+
+#' @export
 NamespaceAware <- setRefClass(
   Class = "NamespaceAware",
   contains = "AbstractClass",

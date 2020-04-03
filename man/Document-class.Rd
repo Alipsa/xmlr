@@ -15,9 +15,9 @@ DocType and other document-level information.
 \section{Fields}{
 
 \describe{
-\item{\code{This}}{document's content including comments, PIs, a possible DocType, and a root element.}
+\item{\code{content}}{This document's content including comments, PIs, a possible DocType, and a root element.}
 
-\item{\code{see}}{https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations}
+\item{\code{baseURI}}{see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations}
 }}
 
 

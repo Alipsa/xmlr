@@ -4,23 +4,28 @@
 #' @details
 #' Methods allow access to the root element as well as the
 #' DocType and other document-level information.
+
+#' @export
 Document <- setRefClass(
   Class = "Document",
   contains = "Parent",
   fields = list(
-    #' @field This document's content including comments, PIs, a possible DocType, and a root element.
+    #' @field content This document's content including comments, PIs, a possible DocType, and a root element.
     content = "list",
-    #' @field see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations
+    #' @field baseURI see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations
     baseURI = "character"
   ),
   methods = list(
+
     initialize = function(...) {
-      print("Document created")
+      #print("Document created")
     },
+
     setRootElement = function(element) {
       content$root <<- element
       return(.self)
     },
+
     getRootElement = function() {
       return(content$root)
     }

@@ -1,8 +1,10 @@
-# An abstract class for rDOM objects which are allowed to contain Content, Element Document.
-# Not sure what to do with 
-# getDescendants()
-# canContainContent()
-#...omitting them for now
+#' An abstract class for rDOM objects which are allowed to contain Content, Element Document.
+#' Not sure what to do with
+#' getDescendants()
+#' canContainContent()
+#'...omitting them for now
+
+#' @export
 Parent <- setRefClass(
   Class = "Parent",
   contains = c("AbstractClass","NamespaceAware"),

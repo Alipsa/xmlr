@@ -1,16 +1,29 @@
+#' Reference class representing an XML tag
+#' @details
+#' An XML element. Methods allow the user to get and manipulate its child
+#' elements and content, directly access the element's textual content,
+#' manipulate its attributes, and manage namespaces.
+
+#' @export
 Element <- setRefClass(
   Class ="Element",
   contains = "Content",
   fields = list(
-    # The local name of the element
+    #' @field name The local name of the element
     name = "character",
-    # The namespace of the element
+    #' @field namespace The namespace of the element
     namespace = "Namespace",
+    #' @field parent The document if this is the root element, otherwise the parent element
     parent = "NULL",
+    #' @field attributeList a list of all the attributes belonging to this element
     attributeList = "list",
+    #' @field contentList all the children of this element
     contentList = "list"
   ),
   methods = list(
+    #' @param name The name of the tag (optional)
+    #' @param namespace a namespace object setting the context for the the element (optional)
+    #' @export
     initialize = function(...) {
       args <- list(...)
       argsNames <- names(args)   
@@ -146,12 +159,16 @@ Element <- setRefClass(
   
 )
 
+#' as.vector for Element classes
+#' @param x the object to convert
 setMethod('as.vector', "Element",
   function(x) {
     x$toString()
   }
 )
 
+#' as.character for Element classes
+#' @param x the object to convert
 setMethod('as.character', "Element",
   function(x) {
     x$toString()

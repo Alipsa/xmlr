@@ -1,3 +1,6 @@
+#' A reference class representing an tag (element) attribute
+
+#' @export
 Attribute <- setRefClass(
   Class = "Attribute",
   contains = "NamespaceAware",
@@ -45,12 +48,16 @@ Attribute <- setRefClass(
   )
 )
 
+#' as.vector for Attribute classes
+#' @param x the object to convert
 setMethod('as.vector', "Attribute",
   function(x) {
     x$toString()
   }
 )
 
+#' as.character for Attribute classes
+#' @param x the object to convert
 setMethod('as.character', "Attribute",
   function(x) {
     x$toString()
