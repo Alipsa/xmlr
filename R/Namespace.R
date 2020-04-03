@@ -37,6 +37,7 @@ Namespace <- setRefClass(
 )
 
 #' as.vector for Namespace classes
+#' @describeIn Namespace as.vector(Namespace)
 #' @param x the object to convert
 setMethod('as.vector', "Namespace",
   function(x) {
@@ -45,6 +46,7 @@ setMethod('as.vector', "Namespace",
 )
 
 #' as.character for Namespace classes
+#' @describeIn Namespace as.character(Namespace)
 #' @param x the object to convert
 setMethod('as.character', "Namespace",
   function(x) {

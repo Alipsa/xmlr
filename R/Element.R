@@ -21,9 +21,7 @@ Element <- setRefClass(
     contentList = "list"
   ),
   methods = list(
-    #' @param name The name of the tag (optional)
-    #' @param namespace a namespace object setting the context for the the element (optional)
-    #' @export
+    #' @param ... The name of the tag (optional) and namespace a namespace object setting the context for the the element (optional)
     initialize = function(...) {
       args <- list(...)
       argsNames <- names(args)   
@@ -160,6 +158,7 @@ Element <- setRefClass(
 )
 
 #' as.vector for Element classes
+#' @describeIn Element as.vector(Element)
 #' @param x the object to convert
 setMethod('as.vector', "Element",
   function(x) {
@@ -168,6 +167,7 @@ setMethod('as.vector', "Element",
 )
 
 #' as.character for Element classes
+#' @describeIn Element as.character(Element)
 #' @param x the object to convert
 setMethod('as.character', "Element",
   function(x) {

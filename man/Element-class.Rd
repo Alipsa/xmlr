@@ -4,20 +4,38 @@
 \name{Element-class}
 \alias{Element-class}
 \alias{Element}
+\alias{as.vector,Element-method}
+\alias{as.character,Element-method}
 \title{Reference class representing an XML tag}
-\arguments{
-\item{name}{The name of the tag (optional)}
+\usage{
+\S4method{as.vector}{Element}(x)
 
-\item{namespace}{a namespace object setting the context for the the element (optional)}
+\S4method{as.character}{Element}(x)
+}
+\arguments{
+\item{x}{the object to convert}
+
+\item{...}{The name of the tag (optional) and namespace a namespace object setting the context for the the element (optional)}
 }
 \description{
 Reference class representing an XML tag
+
+as.vector for Element classes
+
+as.character for Element classes
 }
 \details{
 An XML element. Methods allow the user to get and manipulate its child
 elements and content, directly access the element's textual content,
 manipulate its attributes, and manage namespaces.
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{as.vector}: as.vector(Element)
+
+\item \code{as.character}: as.character(Element)
+}}
+
 \section{Fields}{
 
 \describe{

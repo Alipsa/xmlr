@@ -4,8 +4,29 @@
 \name{Attribute-class}
 \alias{Attribute-class}
 \alias{Attribute}
+\alias{as.vector,Attribute-method}
+\alias{as.character,Attribute-method}
 \title{A reference class representing an tag (element) attribute}
+\usage{
+\S4method{as.vector}{Attribute}(x)
+
+\S4method{as.character}{Attribute}(x)
+}
+\arguments{
+\item{x}{the object to convert}
+}
 \description{
 A reference class representing an tag (element) attribute
+
+as.vector for Attribute classes
+
+as.character for Attribute classes
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{as.vector}: as.vector(Attribute)
+
+\item \code{as.character}: as.character(Attribute)
+}}
+
 

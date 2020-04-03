@@ -49,6 +49,7 @@ Attribute <- setRefClass(
 )
 
 #' as.vector for Attribute classes
+#' @describeIn Attribute as.vector(Attribute)
 #' @param x the object to convert
 setMethod('as.vector', "Attribute",
   function(x) {
@@ -57,6 +58,7 @@ setMethod('as.vector', "Attribute",
 )
 
 #' as.character for Attribute classes
+#' @describeIn Attribute as.character(Attribute)
 #' @param x the object to convert
 setMethod('as.character', "Attribute",
   function(x) {

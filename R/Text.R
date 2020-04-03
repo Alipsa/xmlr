@@ -25,6 +25,7 @@ Text <- setRefClass(
 )
 
 #' as.vector for Text classes
+#' @describeIn Text as.vector(Text)
 #' @param x the object to convert
 setMethod('as.vector', "Text",
   function(x) {
@@ -33,6 +34,7 @@ setMethod('as.vector', "Text",
 )
 
 #' as.character for Text classes
+#' @describeIn Text as.character(Text)
 #' @param x the object to convert
 setMethod('as.character', "Text",
   function(x) {

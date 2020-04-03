@@ -4,11 +4,32 @@
 \name{Text-class}
 \alias{Text-class}
 \alias{Text}
+\alias{as.vector,Text-method}
+\alias{as.character,Text-method}
 \title{Reference class representing text content}
+\usage{
+\S4method{as.vector}{Text}(x)
+
+\S4method{as.character}{Text}(x)
+}
+\arguments{
+\item{x}{the object to convert}
+}
 \description{
 Reference class representing text content
+
+as.vector for Text classes
+
+as.character for Text classes
 }
 \details{
 An XML character sequence. Provides a modular, parentable method of representing text.
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{as.vector}: as.vector(Text)
+
+\item \code{as.character}: as.character(Text)
+}}
+
 

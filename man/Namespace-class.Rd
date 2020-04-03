@@ -4,8 +4,29 @@
 \name{Namespace-class}
 \alias{Namespace-class}
 \alias{Namespace}
+\alias{as.vector,Namespace-method}
+\alias{as.character,Namespace-method}
 \title{A reference class representing the context (Namespace)}
+\usage{
+\S4method{as.vector}{Namespace}(x)
+
+\S4method{as.character}{Namespace}(x)
+}
+\arguments{
+\item{x}{the object to convert}
+}
 \description{
 A reference class representing the context (Namespace)
+
+as.vector for Namespace classes
+
+as.character for Namespace classes
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{as.vector}: as.vector(Namespace)
+
+\item \code{as.character}: as.character(Namespace)
+}}
+
 
