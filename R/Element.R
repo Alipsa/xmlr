@@ -41,11 +41,12 @@ Element <- setRefClass(
         }
       } 
       startElement = "<"
-      if (isS4(namespace) && namespace$getPrefix() != "") {
-          startElement <- paste0(startElement, namespace$getPrefix(), ":")
+      nsPrefix <- ""
+      if (isRc(namespace) && namespace$getPrefix() != "") {
+        nsPrefix <- paste0(namespace$getPrefix(), ":")
       }
-      paste0(startElement, name, attrString, ">", contentList,
-      "</", name, ">")
+      paste0(startElement, nsPrefix, name, attrString, ">", contentList,
+      "</", nsPrefix, name, ">")
     },
 
     getName = function() {

@@ -1,10 +1,51 @@
 context("Simple creation")
-library(rcdom)
 
 test_that("Element can be created", {
   e1 <- Element$new(name="Bla")
-  printp("e1 is", e1$toString())
-  printp("e1 with paste is", e1)
-  print(paste("e1, name is", e1$getName()))
+  expect_equal(e1$toString(), "<Bla></Bla>")
+  expect_equal(paste("e1 with paste is", e1), "e1 with paste is <Bla></Bla>")
   expect_equal(e1$getName(), "Bla")
+})
+
+test_that("Element can have Namespace and attribute", {
+  ns <- Namespace$new(prefix="env", uri="http://alipsa.se/rdom")
+  e2 <- Element$new(name="Foo", namespace=ns)
+  expect_equal(info="Element name", e2$getName(), "Foo" )
+  expect_equal(info="namespace prefix", e2$getNamespace()$getPrefix(), "env")
+  expect_equal(info="NamespacePrefix directly from element", e2$getNamespacePrefix(), "env")
+  attr <- Attribute$new(name="style", value="color:white")
+  expect_equal(info="attr with paste", paste0(attr), "style='color:white'")
+  e2$setAttribute(attribute=attr)
+  e2$setAttribute(name="href", value="http://www.nu.se")
+  output <- capture.output(print(e2))
+  expect_equal(output, "<env:Foo style='color:white' href='http://www.nu.se'></env:Foo>")
+})
+
+test_that("Abstract classes cannot be instantiated", {
+  tryCatch(
+    {
+    test <- NamespaceAware$new()
+  },
+    error=function(cond) {
+      expect_equal(cond$message, "NamespaceAware is an abstract class that can't be initialized.")
+    }
+  )
+
+  tryCatch(
+    {
+    test <- Parent$new()
+  },
+    error=function(cond) {
+      expect_equal(cond$message, "Parent is an abstract class that can't be initialized.")
+    }
+  )
+
+  tryCatch(
+    {
+    test <- AbstractClass$new()
+  },
+    error=function(cond) {
+      expect_equal(cond$message, "AbstractClass is an abstract class that can't be initialized.")
+    }
+  )
 })

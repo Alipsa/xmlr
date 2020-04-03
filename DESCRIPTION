@@ -5,6 +5,7 @@ Title: Read, write and work with XML files
 Author: Per Nyfelt [aut, cre]
 Maintainer: Per Nyfelt <per@alipsa.se>
 Depends: R (>= 3.1.0)
+Encoding: UTF-8
 Description: for creating and reading and manipulating XML 
   inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
 License: MIT + file LICENSE
@@ -25,4 +26,4 @@ Collate:
   'Text.R'
   'Element.R'
   'Attribute.R'
-
+RoxygenNote: 7.1.0

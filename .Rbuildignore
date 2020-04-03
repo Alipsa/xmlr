@@ -1,2 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.idea$
+^.*\.iml$
+^dev.R
+^target$
+^pom.xml

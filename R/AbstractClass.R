@@ -1,4 +1,5 @@
-# An abstract base class with some utility methods
+#' Reference Class representing a non instantiable class
+#' @description An abstract base class with some utility methods
 AbstractClass <- setRefClass(
   Class = "AbstractClass",
   methods = list (
