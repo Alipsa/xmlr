@@ -17,8 +17,11 @@ Document <- setRefClass(
   ),
   methods = list(
 
-    initialize = function(...) {
-      #print("Document created")
+    #' @param element the root element (optional)
+    initialize = function(element = NULL) {
+      if (!is.null(element)) {
+        content$root <<- element
+      }
     },
 
     setRootElement = function(element) {
@@ -28,7 +31,12 @@ Document <- setRefClass(
 
     getRootElement = function() {
       return(content$root)
+    },
+
+    toString = function() {
+      paste0(content$root)
     }
+
   )
 )  
   

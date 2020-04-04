@@ -10,32 +10,29 @@ Element <- setRefClass(
   contains = "Content",
   fields = list(
     #' @field name The local name of the element
-    name = "character",
+    elementName = "character",
     #' @field namespace The namespace of the element
-    namespace = "Namespace",
+    elementNamespace = "Namespace",
     #' @field parent The document if this is the root element, otherwise the parent element
-    parent = "NULL",
+    elementParent = "NULL",
     #' @field attributeList a list of all the attributes belonging to this element
     attributeList = "list",
     #' @field contentList all the children of this element
     contentList = "list"
   ),
   methods = list(
-    #' @param ... The name of the tag (optional) and namespace a namespace object setting the context for the the element (optional)
-    initialize = function(...) {
-      args <- list(...)
-      argsNames <- names(args)   
-      if ("name" %in% argsNames) {
-        name <<- args$name
+    #' @param name The name of the tag (optional)
+    #' @param namespace a namespace object setting the context for the the element (optional)
+    initialize = function(name = NULL, namespace = NULL) {
+      if(!is.null(name)) {
+        elementName <<- name
       }
-      if ("namespace" %in% argsNames) {
-        ns <- args$namespace
-        # TODO should we alow NULL or NA here?
-        if ("Namespace" %in% class(ns)) {
-         namespace <<- ns 
+      if (!is.null(namespace)) {
+        if (isRc(namespace, "Namespace")) {
+          elementNamespace <<- namespace
         } else {
-         stop(paste("Element constructor, namespace is not an instance of the Namespace class:", class(ns))) 
-        }      
+         stop(paste("Element constructor, namespace is not an instance of the Namespace class:", class(namespace)))
+        }
       }
       #print(paste("Element created, name is", private$name))
     },
@@ -53,24 +50,29 @@ Element <- setRefClass(
       } 
       startElement = "<"
       nsPrefix <- ""
-      if (isRc(namespace) && namespace$getPrefix() != "") {
-        nsPrefix <- paste0(namespace$getPrefix(), ":")
+      if (elementNamespace$getPrefix() != "") {
+        nsPrefix <- paste0(elementNamespace$getPrefix(), ":")
       }
-      paste0(startElement, nsPrefix, name, attrString, ">", contentList,
-      "</", nsPrefix, name, ">")
+      start <- paste0(startElement, nsPrefix, elementName, attrString, ">")
+      children <- ""
+      for (child in contentList) {
+        children <- child$toString()
+      }
+      end <- paste0("</", nsPrefix, elementName, ">")
+      paste0(start, children, end)
     },
 
     getName = function() {
-      return(name)
+      return(elementName)
     },
 
     getNamespace = function() {
-      return(namespace) 
+      return(elementNamespace)
     },
 
     # Returns the namespace prefix of the element or an empty string if none exist
     getNamespacePrefix = function() {
-      return(namespace$getPrefix())
+      return(elementNamespace$getPrefix())
     },
     
     getAttribute = function(attname, ns = Namespace$new()) {

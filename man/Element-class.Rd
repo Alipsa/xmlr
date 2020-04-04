@@ -15,7 +15,9 @@
 \arguments{
 \item{x}{the object to convert}
 
-\item{...}{The name of the tag (optional) and namespace a namespace object setting the context for the the element (optional)}
+\item{name}{The name of the tag (optional)}
+
+\item{namespace}{a namespace object setting the context for the the element (optional)}
 }
 \description{
 Reference class representing an XML tag

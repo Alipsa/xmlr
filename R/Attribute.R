@@ -6,44 +6,42 @@ Attribute <- setRefClass(
   contains = "NamespaceAware",
   fields = list(
     # The local name of the element
-    name = "character",
+    attributeName = "character",
     # The namespace of the element
-    namespace = "Namespace",
-    value = "character",
-    parent = "Element"
+    attributeNamespace = "Namespace",
+    attributeValue = "character",
+    attributeParent = "Element"
   ),
   methods = list(
-    initialize = function(...) {
-      args <- list(...)
-      argsNames <- names(args)   
-      if ("name" %in% argsNames) {
-        name <<- args$name
-      }
-      if ("namespace" %in% argsNames) {     
-        ns <- args$namespace
-        # TODO should we alow NULL or NA here?
-        if ("Namespace" == class(ns)) {
-         namespace <<- ns 
+    #' @param name The name (character) of the new Attribute
+    #' @param value The value (character) of the new Attribute
+    #' @param namespace The namespace (Namespace class) for the new Attribute, must be named
+    initialize = function(name=character(0), value=character(0), namespace=NULL) {
+      attributeName <<- name
+      attributeValue <<- value
+      if (!is.null(namespace)) {
+        if (isRc(namespace, "Namespace")) {
+          attributeNamespace <<- namespace
         } else {
-         stop(paste("Attribute constructor, namespace is not an instance of the Namespace class:", class(ns))) 
+         stop(paste("Attribute constructor, namespace is not an instance of the Namespace class:", class(namespace)))
         }      
       }
-      if ("value" %in% argsNames) {
-        value <<- args$value
-      }
-      #print(paste("Element created, name is", private$name))
     },
+
     toString = function() {
-      paste0(name, "='", value, "'")
+      paste0(attributeName, "='", attributeValue, "'")
     },
+
     show = function() {
       cat(toString())
     },
+
     getName = function() {
-      return(name)
+      return(attributeName)
     },
+
     getValue = function() {
-      return(value)
+      return(attributeValue)
     }
   )
 )

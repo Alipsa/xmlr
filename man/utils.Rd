@@ -10,12 +10,15 @@ printp(...)
 
 printp0(...)
 
-isRc(x)
+isRc(x, clazz = "refClass")
 }
 \arguments{
 \item{...}{all the stuff that should be printed}
 
 \item{x}{the object to check}
+
+\item{clazz}{the name of the class e.g. "Element" for the Element class.
+Optional, if omitted it checks that the object is a reference class}
 }
 \description{
 Common utility functions

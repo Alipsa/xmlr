@@ -7,6 +7,14 @@ test_that("Element can be created", {
   expect_equal(e1$getName(), "Bla")
 })
 
+test_that("Document can be created", {
+  d1 <- Document$new()
+  root <- d1$getRootElement()
+  expect_equal(info="Document with no root should be NULL", is.null(root), TRUE)
+  d2 <- Document$new(Element$new("root"))
+  expect_equal(info="getting root element from document", d2$getRootElement()$getName(), "root")
+})
+
 test_that("Element can have Namespace and attribute", {
   ns <- Namespace$new(prefix="env", uri="http://alipsa.se/rdom")
   e2 <- Element$new(name="Foo", namespace=ns)
@@ -30,22 +38,6 @@ test_that("Abstract classes cannot be instantiated", {
       expect_equal(cond$message, "NamespaceAware is an abstract class that can't be initialized.")
     }
   )
-
-  tryCatch(
-    {
-    test <- Parent$new()
-  },
-    error=function(cond) {
-      expect_equal(cond$message, "Parent is an abstract class that can't be initialized.")
-    }
-  )
-
-  tryCatch(
-    {
-    test <- AbstractClass$new()
-  },
-    error=function(cond) {
-      expect_equal(cond$message, "AbstractClass is an abstract class that can't be initialized.")
-    }
-  )
+  expect_error(Parent$new(), "Parent is an abstract class that can't be initialized.")
+  expect_error(AbstractClass$new(), "AbstractClass is an abstract class that can't be initialized.")
 })
