@@ -11,7 +11,7 @@ test_that("Documents can be created and printed", {
   )
   doc <- Document$new()
   root <- Element$new("table")
-  root$setNamespace(Namespace$new("xmlns", "http://www.w3.org/TR/html4/"))
+  root$setAttribute("xmlns", "http://www.w3.org/TR/html4/")
 
   root$addContent(
     Element$new("tr")

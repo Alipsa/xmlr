@@ -16,8 +16,6 @@
 \item{x}{the object to convert}
 
 \item{name}{The name of the tag (optional)}
-
-\item{namespace}{a namespace object setting the context for the the element (optional)}
 }
 \description{
 Reference class representing an XML tag
@@ -28,8 +26,8 @@ as.character for Element classes
 }
 \details{
 An XML element. Methods allow the user to get and manipulate its child
-elements and content, directly access the element's textual content,
-manipulate its attributes, and manage namespaces.
+elements and content, directly access the element's textual content, and
+manipulate its attributes.
 }
 \section{Methods (by generic)}{
 \itemize{
@@ -42,10 +40,6 @@ manipulate its attributes, and manage namespaces.
 
 \describe{
 \item{\code{name}}{The local name of the element}
-
-\item{\code{namespace}}{The namespace of the element}
-
-\item{\code{parent}}{The document if this is the root element, otherwise the parent element}
 
 \item{\code{attributeList}}{a list of all the attributes belonging to this element}
 

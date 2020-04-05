@@ -4,7 +4,19 @@
 \name{Document-class}
 \alias{Document-class}
 \alias{Document}
+\alias{as.vector,Document-method}
+\alias{as.character,Document-method}
 \title{Reference Class representing an XML document}
+\usage{
+\S4method{as.vector}{Document}(x)
+
+\S4method{as.character}{Document}(x)
+}
+\arguments{
+\item{x}{the object to convert}
+
+\item{element}{the root element (optional)}
+}
 \description{
 The base container for the DOM
 }
@@ -12,6 +24,13 @@ The base container for the DOM
 Methods allow access to the root element as well as the
 DocType and other document-level information.
 }
+\section{Methods (by generic)}{
+\itemize{
+\item \code{as.vector}: as.vector(Document)
+
+\item \code{as.character}: as.character(Document)
+}}
+
 \section{Fields}{
 
 \describe{

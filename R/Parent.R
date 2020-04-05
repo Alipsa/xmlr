@@ -7,7 +7,7 @@
 #' @export
 Parent <- setRefClass(
   Class = "Parent",
-  contains = c("AbstractClass","NamespaceAware"),
+  contains = "AbstractClass",
   methods = list(
     initialize = function() {      
       preventInstatiation(.self)

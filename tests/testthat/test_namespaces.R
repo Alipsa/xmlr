@@ -1,16 +1,16 @@
 
 test_that("Namespace serialization works", {
   # <parent xmlns="http://some.default"> <child /> </parent>
-  ns <- Namespace$new(uri="http://some.default")
-  parent <- Element$new("parent", ns)
+  parent <- Element$new("parent")
+  parent$setAttribute("xmlns", "http://some.default")
   parent$addContent(Element$new("child"))
   expect_equal(parent$toString(), "<parent xmlns='http://some.default'><child></child></parent>")
 
   # <parent xmlns:env="http://some.default"> <env:child /> </parent>
-  env <- Namespace$new("env", "http://some.default")
-  parent <- Element$new("parent", env)
-  parent$addContent(Element$new("child", env))
-  expect_equal(parent$toString(), "<parent xmlns='http://some.default'><child></child></parent>")
+  env <- Attribute$new("xmlns:env", "http://some.default")
+  parent <- Element$new("parent")$setAttributeObj(env)
+  parent$addContent(Element$new("env:child"))
+  expect_equal(parent$toString(), "<parent xmlns:env='http://some.default'><env:child></env:child></parent>")
   # <parent> <child /> </parent>
   # <root xmlns:env="http://some.default"> <env:parent> <env:child /> </parent> </root>
 
