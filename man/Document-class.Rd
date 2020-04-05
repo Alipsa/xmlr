@@ -14,8 +14,6 @@
 }
 \arguments{
 \item{x}{the object to convert}
-
-\item{element}{the root element (optional)}
 }
 \description{
 The base container for the DOM
@@ -29,14 +27,6 @@ DocType and other document-level information.
 \item \code{as.vector}: as.vector(Document)
 
 \item \code{as.character}: as.character(Document)
-}}
-
-\section{Fields}{
-
-\describe{
-\item{\code{content}}{This document's content including comments, PIs, a possible DocType, and a root element.}
-
-\item{\code{baseURI}}{see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations}
 }}
 
 

@@ -14,8 +14,6 @@
 }
 \arguments{
 \item{x}{the object to convert}
-
-\item{name}{The name of the tag (optional)}
 }
 \description{
 Reference class representing an XML tag

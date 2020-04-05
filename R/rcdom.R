@@ -4,7 +4,7 @@
 #' @import methods
 #' @docType package
 #' @name rcdom
-#' @examples
-#' doc <- Document$new()
-#'
+# @examples
+# doc <- Document$new()
+
 NULL

@@ -9,8 +9,8 @@ Attribute <- setRefClass(
     attributeParent = "Element"
   ),
   methods = list(
-    #' @param name The name (character) of the new Attribute
-    #' @param value The value (character) of the new Attribute
+    # @param name The name (character) of the new Attribute
+    # @param value The value (character) of the new Attribute
     initialize = function(name=character(0), value=character(0)) {
       attributeName <<- name
       attributeValue <<- value

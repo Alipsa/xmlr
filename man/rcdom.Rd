@@ -8,7 +8,3 @@
 A package for creating and reading and manipulating XML
 inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
 }
-\examples{
-doc <- Document$new()
-
-}

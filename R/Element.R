@@ -17,7 +17,7 @@ Element <- setRefClass(
     contentList = "list"
   ),
   methods = list(
-    #' @param name The name of the tag (optional)
+    # @param name The name of the tag (optional)
     initialize = function(name = NULL) {
       if(!is.null(name)) {
         m_name <<- name

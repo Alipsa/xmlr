@@ -10,14 +10,14 @@ Document <- setRefClass(
   Class = "Document",
   contains = "Parent",
   fields = list(
-    #' @field content This document's content including comments, PIs, a possible DocType, and a root element.
+    # @field content This document's content including comments, PIs, a possible DocType, and a root element.
     content = "list",
-    #' @field baseURI see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations
+    # @field baseURI see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations
     baseURI = "character"
   ),
   methods = list(
 
-    #' @param element the root element (optional)
+    # @param element the root element (optional)
     initialize = function(element = NULL) {
       if (!is.null(element)) {
         content$root <<- element

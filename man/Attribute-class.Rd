@@ -14,10 +14,6 @@
 }
 \arguments{
 \item{x}{the object to convert}
-
-\item{name}{The name (character) of the new Attribute}
-
-\item{value}{The value (character) of the new Attribute}
 }
 \description{
 A reference class representing an tag (element) attribute
@@ -31,14 +27,6 @@ as.character for Attribute classes
 \item \code{as.vector}: as.vector(Attribute)
 
 \item \code{as.character}: as.character(Attribute)
-}}
-
-\section{Fields}{
-
-\describe{
-\item{\code{name}}{The local name of the Attribute}
-
-\item{\code{value}}{The value (character) of the Attribute}
 }}
 
 
