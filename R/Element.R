@@ -10,11 +10,9 @@ Element <- setRefClass(
   contains = "Content",
   fields = list(
     #' @field name The local name of the element
-    elementName = "character",
+    m_name = "character",
     #' @field namespace The namespace of the element
-    elementNamespace = "Namespace",
-    #' @field parent The document if this is the root element, otherwise the parent element
-    elementParent = "NULL",
+    m_namespace = "Namespace",
     #' @field attributeList a list of all the attributes belonging to this element
     attributeList = "list",
     #' @field contentList all the children of this element
@@ -25,11 +23,11 @@ Element <- setRefClass(
     #' @param namespace a namespace object setting the context for the the element (optional)
     initialize = function(name = NULL, namespace = NULL) {
       if(!is.null(name)) {
-        elementName <<- name
+        m_name <<- name
       }
       if (!is.null(namespace)) {
         if (isRc(namespace, "Namespace")) {
-          elementNamespace <<- namespace
+          m_namespace <<- namespace
         } else {
          stop(paste("Element constructor, namespace is not an instance of the Namespace class:", class(namespace)))
         }
@@ -50,29 +48,71 @@ Element <- setRefClass(
       } 
       startElement = "<"
       nsPrefix <- ""
-      if (elementNamespace$getPrefix() != "") {
-        nsPrefix <- paste0(elementNamespace$getPrefix(), ":")
+
+      # 5 types
+      # <parent xmlns="http://some.default"> <child /> </parent>
+      # <parent xmlns="env:http://some.default"> <env:child /> </parent>
+      # <parent> <child /> </parent>
+      # <env:parent> <env:child /> </parent>
+      # <env:parent> <child xmlns="foo:http://another"/> </parent>
+      if (isRc(m_parent, "Element")) {
+        if (m_namespace$equals(m_parent$getNamespace())) {
+          if (m_namespace$getPrefix() != "") {
+            # do we need to continue all the way to the top?
+            nsPrefix <- m_namespace$getPrefix()
+          }
+        }
+      } else {
+        if (m_namespace$getPrefix() != "") {
+          nsPrefix <- paste0(m_namespace$getPrefix(), ":")
+        }
+        attrString <- trim(paste(m_namespace, attrString))
       }
-      start <- paste0(startElement, nsPrefix, elementName, attrString, ">")
+      ########
+      #if (m_namespace$getPrefix() != "" & m_namespace$getUri != "") {
+      #  prefix <- m_namespace$getPrefix()
+      #  if (prefix != "") {
+      #    prefix <- paste0(prefix, ":")
+      #  }
+      #  nsPrefix <- paste0("xmlns='", m_namespace$getPrefix(), ":")
+      #} else if (m_namespace$getPrefix() != "") {
+      #  nsPrefix <- paste0(m_namespace$getPrefix(), ":")
+      #}
+      #########
+
+      if (length(attrString) > 0) {
+        attrString <- paste0(" ", attrString)
+      }
+
+      start <- paste0(startElement, nsPrefix, m_name, attrString, ">")
       children <- ""
       for (child in contentList) {
-        children <- child$toString()
+        children <- paste0(children, child$toString())
       }
-      end <- paste0("</", nsPrefix, elementName, ">")
+      end <- paste0("</", nsPrefix, m_name, ">")
       paste0(start, children, end)
     },
 
     getName = function() {
-      return(elementName)
+      return(m_name)
     },
 
     getNamespace = function() {
-      return(elementNamespace)
+      return(m_namespace)
     },
 
-    # Returns the namespace prefix of the element or an empty string if none exist
+    setNamespace = function(namespace) {
+      if (isRc(namespace, "Namespace")) {
+        m_namespace <<- namespace
+      } else {
+        stop(paste("Element$setNamespace(), namespace is not an instance of the Namespace class:", class(namespace)))
+      }
+      return(.self)
+    },
+
+    #' Returns the namespace prefix of the element or an empty string if none exist
     getNamespacePrefix = function() {
-      return(elementNamespace$getPrefix())
+      return(m_namespace$getPrefix())
     },
     
     getAttribute = function(attname, ns = Namespace$new()) {
@@ -80,41 +120,20 @@ Element <- setRefClass(
       return(attributeList[[attname]])
     },
     
-    setAttribute = function(...) {
-      args <- list(...)
-      argsNames <- names(args)
-      if (length(args) == 1) {
-        if ("attribute" %in% argsNames) {
-          attr <- args$attribute
-        } else {
-          stop("Element$setAttribute with 1 parameter but it was not 'attribute'")
-        }
-      } else if (length(args) == 2) {              
-        if ("name" %in% argsNames) {
-          attname <- args$name
-        } else {
-          stop("Element$setAttribute with 2 parameters but none of them was 'name'")
-        }
-        if ("value" %in% argsNames) {
-          attval <- args$value
-        } else {
-          stop("Element$setAttribute with 2 parameters but none of them was 'value'")
-        }       
-        attr <- Attribute$new(name=attname, value=attval)        
-      } else {
-         stop("Element$setAttribute unknown number of parameters")
-      }
-      #print(paste("Adding attribute", attr, "to element", name))
-      attributeList[[attr$getName()]] <<- attr
-      #print("Attributes are now")
-      #for (at in attributeList) {
-      #  print(paste("name =", at$getName(), ", value =", at$getValue()))
-      #}
+    setAttribute = function(name, value) {
+      attr <- Attribute$new(name=name, value=value)
+      setAttributeObj(attr)
+    },
+
+    # function overloading not supported with reference classes so change the method name
+    setAttributeObj = function(attribute) {
+      attributeList[[attribute$getName()]] <<- attribute
       return(.self)
     },
     
     addContent = function(content) {
       idx <- length(contentList) + 1
+      content$setParent(.self)
       contentList[[idx]] <<- content
       return(.self)
     },
@@ -129,6 +148,7 @@ Element <- setRefClass(
       } else {
         textObj <- Text$new(as.character(text))
       }
+      textObj$setParent(.self)
       contentList <<- list()
       contentList[[text]] <<- textObj
       return(.self)

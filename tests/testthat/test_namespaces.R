@@ -1,3 +1,24 @@
+
+test_that("Namespace serialization works", {
+  # <parent xmlns="http://some.default"> <child /> </parent>
+  ns <- Namespace$new(uri="http://some.default")
+  parent <- Element$new("parent", ns)
+  parent$addContent(Element$new("child"))
+  expect_equal(parent$toString(), "<parent xmlns='http://some.default'><child></child></parent>")
+
+  # <parent xmlns:env="http://some.default"> <env:child /> </parent>
+  env <- Namespace$new("env", "http://some.default")
+  parent <- Element$new("parent", env)
+  parent$addContent(Element$new("child", env))
+  expect_equal(parent$toString(), "<parent xmlns='http://some.default'><child></child></parent>")
+  # <parent> <child /> </parent>
+  # <root xmlns:env="http://some.default"> <env:parent> <env:child /> </parent> </root>
+
+  # <env:parent xmlns:env="http://some.default"> <child xmlns:foo="http://another"/> </parent>
+
+})
+
+
 nsXml <-
 '"<root>
 
@@ -41,3 +62,4 @@ defaultNsXml <- '<table xmlns="http://www.w3.org/TR/html4/">
     <td>Bananas</td>
   </tr>
 </table>'
+

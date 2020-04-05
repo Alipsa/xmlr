@@ -22,3 +22,8 @@ printp0 <- function(...) {
 isRc <- function(x, clazz = "refClass") {
   is(x, clazz)
 }
+
+#' @describeIn utils Trim whitespace
+#' @param x the object to trim
+#' @export
+trim <- function (x) gsub("^\\s+|\\s+$", "", x)

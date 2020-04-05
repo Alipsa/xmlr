@@ -34,9 +34,27 @@ Document <- setRefClass(
     },
 
     toString = function() {
-      paste0(content$root)
+      paste0(content$root$toString())
     }
 
   )
-)  
+)
+
+#' as.vector for Document classes
+#' @describeIn Document as.vector(Document)
+#' @param x the object to convert
+setMethod('as.vector', "Document",
+  function(x) {
+    x$toString()
+  }
+)
+
+#' as.character for Document classes
+#' @describeIn Document as.character(Document)
+#' @param x the object to convert
+setMethod('as.character', "Document",
+  function(x) {
+    x$toString()
+  }
+)
   

@@ -10,6 +10,7 @@ Namespace <- setRefClass(
     uri = "character"
   ),
   methods = list(
+
     initialize = function(...) {
       args <- list(...)
       argsNames <- names(args)      
@@ -24,14 +25,31 @@ Namespace <- setRefClass(
         uri <<- ""
       }
     },
+
     getPrefix = function() {
       return(prefix)
     },
+
     getUri = function() {
       return(uri)
     },
+
     toString = function() {
-      return(paste0(prefix, ":", uri))
+      if (identical(uri,character(0)) | uri == "") {
+        return("")
+      }
+      if (identical(prefix,character(0)) | prefix == "") {
+        return(paste0("xmlns='",uri, "'"))
+      }
+      return(paste0("xmlns:'", prefix, "=", uri, "'"))
+    },
+
+    equals = function(other) {
+      if (isRc(other, "Namespace")) {
+        return(prefix == other$getPrefix() & uri == other$getUri())
+      } else {
+        return (FALSE)
+      }
     }
   )
 )

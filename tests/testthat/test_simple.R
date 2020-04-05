@@ -23,7 +23,7 @@ test_that("Element can have Namespace and attribute", {
   expect_equal(info="NamespacePrefix directly from element", e2$getNamespacePrefix(), "env")
   attr <- Attribute$new(name="style", value="color:white")
   expect_equal(info="attr with paste", paste0(attr), "style='color:white'")
-  e2$setAttribute(attribute=attr)
+  e2$setAttributeObj(attribute=attr)
   e2$setAttribute(name="href", value="http://www.nu.se")
   output <- capture.output(print(e2))
   expect_equal(output, "<env:Foo style='color:white' href='http://www.nu.se'></env:Foo>")
