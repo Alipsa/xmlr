@@ -30,6 +30,6 @@ test_that("Documents can be created and printed", {
   out <- capture.output({
     print(doc$getRootElement())
   })
-  printp("out is", out)
+  #printp("out is", out)
   expect_match(out, xmlString)
 })

@@ -116,7 +116,7 @@
               </sourceDirectories>
             </configuration>
           </execution-->
-          <execution>
+          <!--execution>
             <id>renjin-test</id>
             <goals>
               <goal>test</goal>
@@ -127,7 +127,7 @@
                 <package>methods</package>
               </defaultPackages>
             </configuration>
-          </execution>
+          </execution-->
         </executions>
       </plugin>
     </plugins>
