@@ -27,3 +27,7 @@ isRc <- function(x, clazz = "refClass") {
 #' @param x the object to trim
 #' @export
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+
+notImplemented <- function(className, methodName, ...) {
+  print(paste(paste0(className, "$", methodName), "Not implemented,", ...))
+}

@@ -39,9 +39,16 @@ manipulate its attributes.
 \describe{
 \item{\code{name}}{The local name of the element}
 
-\item{\code{attributeList}}{a list of all the attributes belonging to this element}
-
 \item{\code{contentList}}{all the children of this element}
+
+\item{\code{attributeList}}{a list of all the attributes belonging to this element}
 }}
 
+\section{Methods}{
+
+\describe{
+\item{\code{addContent(content)}}{append the content and return the parent (the calling object)}
+
+\item{\code{getContent()}}{return the full content of this parent as a list}
+}}
 
