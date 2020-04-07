@@ -1,9 +1,9 @@
-#' Reference class representing an XML tag
-#' @details
+#' @title Element, A reference class representing an XML tag
+#' @description
 #' An XML element. Methods allow the user to get and manipulate its child
 #' elements and content, directly access the element's textual content, and
 #' manipulate its attributes.
-
+#'
 #' @export
 Element <- setRefClass(
   Class ="Element",
@@ -50,35 +50,41 @@ Element <- setRefClass(
     getName = function() {
       return(m_name)
     },
-    
-    getAttribute = function(attname) {
-      #print(paste("Getting attribute for", attname))
-      return(attributeList[[attname]])
+
+    getAttribute = function(name) {
+      "Get an Attribute object"
+      #print(paste("Getting attribute for", name))
+      return(attributeList[[name]])
     },
-    
+
     setAttribute = function(name, value) {
+      "Add or replace an attribute"
       attr <- Attribute$new(name=name, value=value)
       setAttributeObj(attr)
     },
 
-    # function overloading not supported with reference classes so change the method name
+
     setAttributeObj = function(attribute) {
+      "Add or replace an attribute"
       attributeList[[attribute$getName()]] <<- attribute
       return(.self)
     },
-    
+
     addContent = function(content) {
+      "Appends the child to the end of the content list."
       idx <- length(contentList) + 1
       content$setParent(.self)
       contentList[[idx]] <<- content
       return(.self)
     },
-    
+
     getContent = function() {
+      "Returns the full content of the element as a List that may contain objects of type Text, Element, Comment, ProcessingInstruction, CDATA, and EntityRef"
       return(contentList)
     },
     
     setText = function(text) {
+      "Replace all content with the text supplied"
       if ("Text" == class(text)) {
         textObj <- text
       } else {
@@ -112,7 +118,6 @@ Element <- setRefClass(
       }
     }
   )
-  
 )
 
 #' as.vector for Element classes
