@@ -29,4 +29,11 @@ DocType and other document-level information.
 \item \code{as.character}: as.character(Document)
 }}
 
+\section{Methods}{
+
+\describe{
+\item{\code{getBaseURI()}}{return the URI from which this document was loaded}
+
+\item{\code{setBaseURI(uri)}}{Sets the effective URI from which this document was loaded}
+}}
 

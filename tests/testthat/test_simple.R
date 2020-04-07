@@ -31,6 +31,5 @@ test_that("Element can have Namespace and attribute", {
 })
 
 test_that("Abstract classes cannot be instantiated", {
-  expect_error(Parent$new(), "Parent is an abstract class that can't be initialized.")
   expect_error(AbstractClass$new(), "AbstractClass is an abstract class that can't be initialized.")
 })

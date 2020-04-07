@@ -56,5 +56,4 @@ test_that("Deep trees works", {
   )
   #print(root)
   expect_equal(paste0(root), xmlString)
-
 })

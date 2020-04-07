@@ -8,12 +8,11 @@
 #' @export
 Document <- setRefClass(
   Class = "Document",
-  contains = "Parent",
   fields = list(
     # @field content This document's content including comments, PIs, a possible DocType, and a root element.
     content = "list",
-    # @field baseURI see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations
-    baseURI = "character"
+    # @field baseURI From where the document was loaded, see https://www.w3.org/TR/2003/WD-DOM-Level-3-Core-20030226/core.html#baseURIs-Considerations
+    m_baseURI = "character"
   ),
   methods = list(
 
@@ -31,6 +30,25 @@ Document <- setRefClass(
 
     getRootElement = function() {
       return(content$root)
+    },
+
+    getBaseURI = function() {
+      "return the URI from which this document was loaded"
+      return(m_baseURI)
+    },
+
+    setBaseURI = function(uri) {
+      "Sets the effective URI from which this document was loaded"
+      m_baseURI <<- uri
+      return(.self)
+    },
+
+    getDocType = function() {
+      printp("Document$getDocType() not implemented")
+    },
+
+    setDocType = function(docType) {
+      printp("Document$setDocType(docType) not implemented")
     },
 
     toString = function() {

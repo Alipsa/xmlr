@@ -16,10 +16,8 @@ Imports:
 Suggests: testthat
 Collate:
   'rcdom.R'
-  'hello.R'
   'utils.R'
   'AbstractClass.R'
-  'Parent.R'
   'Content.R'
   'Document.R'
   'Text.R'

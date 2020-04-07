@@ -1,15 +1,14 @@
-#' A reference class representing content that can belong to an Element
-
+#' An abstract reference class representing content that can belong to an Element
+#'
 #' @export
 Content <- setRefClass(
   Class = "Content",
-  contains = "Parent",
-  fields = c("m_parent"),
+  contains = "AbstractClass",
+  fields = c(
+    #' @field m_parent the parent (if any)
+    "m_parent"
+  ),
   methods = list(
-
-    show = function() {
-      cat(toString())
-    },
 
     getParent = function() {
       m_parent
@@ -18,5 +17,6 @@ Content <- setRefClass(
     setParent = function(parent) {
       m_parent <<- parent
     }
+
   )
 )

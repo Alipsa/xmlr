@@ -4,8 +4,14 @@
 \name{Content-class}
 \alias{Content-class}
 \alias{Content}
-\title{A reference class representing content that can belong to an Element}
+\title{An abstract reference class representing content that can belong to an Element}
 \description{
-A reference class representing content that can belong to an Element
+An abstract reference class representing content that can belong to an Element
 }
+\section{Fields}{
+
+\describe{
+\item{\code{m_parent}}{the parent (if any)}
+}}
+
 
