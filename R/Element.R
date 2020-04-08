@@ -46,8 +46,24 @@ Element <- setRefClass(
       length(contentList)
     },
 
+    findContentIndex = function(content) {
+      "Find the position of the content in the contentList or -1 if not found"
+      for (idx in seq_along(contentList)) {
+        if(identical(content, contentList[[idx]])) {
+          return(idx)
+        }
+      }
+      -1
+    },
+
     removeContent = function(content) {
-      contentList <<- contentList[-content]
+      "Remove the specified content from this element"
+      index <- findContentIndex(content)
+      if ( index != -1){
+        contentList <<- contentList[- index]
+      } else {
+        stop("There is no such content belonging to this Element")
+      }
     },
 
     removeContentAt = function(index) {

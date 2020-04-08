@@ -42,6 +42,8 @@ manipulate its attributes.
 \describe{
 \item{\code{addContent(content)}}{Appends the child to the end of the content list. return the parent (the calling object)}
 
+\item{\code{findContentIndex(content)}}{Find the position of the content in the contentList or -1 if not found}
+
 \item{\code{getAttribute(name)}}{Get an Attribute object}
 
 \item{\code{getChild(name)}}{Retrun the first child element matching the name}
@@ -55,6 +57,10 @@ manipulate its attributes.
 \item{\code{getName()}}{Return the name of this Element}
 
 \item{\code{getText()}}{Return the text content of this element if any}
+
+\item{\code{removeContent(content)}}{Remove the specified content from this element}
+
+\item{\code{removeContentAt(index)}}{Remove the content at the given index and return the content that was removed}
 
 \item{\code{setAttribute(name, value)}}{Add or replace an attribute}
 

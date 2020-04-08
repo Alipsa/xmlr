@@ -57,3 +57,26 @@ test_that("Deep trees works", {
   #print(root)
   expect_equal(paste0(root), xmlString)
 })
+
+test_that("Elements can be removed", {
+  xmlString <- paste0(
+  "<foo>",
+  "<Bar>Some text</Bar>",
+  "<Baz>More stuff</Baz>",
+  "</foo>")
+  foo <- Element$new("foo")
+  foo$addContent(Element$new("Bar")$setText("Some text"))
+  foo$addContent(Element$new("Baz")$setText("More stuff"))
+  expect_equal(foo$getChild("Bar")$getText(), "Some text")
+  expect_equal(paste(foo), xmlString)
+
+  baz <- foo$getChild("Baz")
+  foo$removeContent(baz)
+  expect_equal(paste(foo), paste0(
+    "<foo>",
+    "<Bar>Some text</Bar>",
+    "</foo>")
+  )
+  # As we have just removed baz, removing it again should result in an error
+  expect_error(foo$removeContent(baz), "There is no such content belonging to this Element")
+})
