@@ -6,7 +6,7 @@
 \alias{Element}
 \alias{as.vector,Element-method}
 \alias{as.character,Element-method}
-\title{Reference class representing an XML tag}
+\title{Element, A reference class representing an XML tag}
 \usage{
 \S4method{as.vector}{Element}(x)
 
@@ -16,13 +16,6 @@
 \item{x}{the object to convert}
 }
 \description{
-Reference class representing an XML tag
-
-as.vector for Element classes
-
-as.character for Element classes
-}
-\details{
 An XML element. Methods allow the user to get and manipulate its child
 elements and content, directly access the element's textual content, and
 manipulate its attributes.
@@ -47,8 +40,26 @@ manipulate its attributes.
 \section{Methods}{
 
 \describe{
-\item{\code{addContent(content)}}{append the content and return the parent (the calling object)}
+\item{\code{addContent(content)}}{Appends the child to the end of the content list. return the parent (the calling object)}
 
-\item{\code{getContent()}}{return the full content of this parent as a list}
+\item{\code{getAttribute(name)}}{Get an Attribute object}
+
+\item{\code{getChild(name)}}{Retrun the first child element matching the name}
+
+\item{\code{getChildren()}}{Get all the child Elements belong to this Element}
+
+\item{\code{getContent()}}{Returns the full content of the element as a List that may contain objects of type Text, Element, Comment, ProcessingInstruction, CDATA, and EntityRef}
+
+\item{\code{getContentSize()}}{Return the number of elements in the content list belonging to this this element}
+
+\item{\code{getName()}}{Return the name of this Element}
+
+\item{\code{getText()}}{Return the text content of this element if any}
+
+\item{\code{setAttribute(name, value)}}{Add or replace an attribute}
+
+\item{\code{setAttributeObj(attribute)}}{Add or replace an attribute}
+
+\item{\code{setText(text)}}{Replace all content with the text supplied}
 }}
 

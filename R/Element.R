@@ -29,7 +29,7 @@ Element <- setRefClass(
     },
 
     addContent = function(content) {
-      "append the content and return the parent (the calling object)"
+      "Appends the child to the end of the content list. return the parent (the calling object)"
       idx <- length(contentList) + 1
       content$setParent(.self)
       contentList[[idx]] <<- content
@@ -37,18 +37,27 @@ Element <- setRefClass(
     },
 
     getContent = function() {
-      "return the full content of this parent as a list"
+      "Returns the full content of the element as a List that may contain objects of type Text, Element, Comment, ProcessingInstruction, CDATA, and EntityRef"
       return(contentList)
     },
 
     getContentSize = function() {
+      "Return the number of elements in the content list belonging to this this element"
       length(contentList)
     },
 
-    removeContent = function(...) {
-      printp("Element", "removeContent()", "removeContent(...)", "Not implemented, no args should remove all content from this parent and return the detached children",
-                     ", with a Filter it should remove all content from this parent that matches the supplied filter and return a list of the detached children",
-                     ", with an index it should removes and return the child at the given index, or return NA if there's no such child")
+    removeContent = function(content) {
+      contentList <<- contentList[-content]
+    },
+
+    removeContentAt = function(index) {
+      "Remove the content at the given index and return the content that was removed"
+      if (is.numeric(index)) {
+        content <- contentList[[index]]
+        contentList <<- contentList[-index]
+        return(content)
+      }
+      return(NULL)
     },
 
     cloneContent = function() {
@@ -60,6 +69,7 @@ Element <- setRefClass(
     },
 
     getName = function() {
+      "Return the name of this Element"
       return(m_name)
     },
 
@@ -81,19 +91,6 @@ Element <- setRefClass(
       attributeList[[attribute$getName()]] <<- attribute
       return(.self)
     },
-
-    addContent = function(content) {
-      "Appends the child to the end of the content list."
-      idx <- length(contentList) + 1
-      content$setParent(.self)
-      contentList[[idx]] <<- content
-      return(.self)
-    },
-
-    getContent = function() {
-      "Returns the full content of the element as a List that may contain objects of type Text, Element, Comment, ProcessingInstruction, CDATA, and EntityRef"
-      return(contentList)
-    },
     
     setText = function(text) {
       "Replace all content with the text supplied"
@@ -109,6 +106,7 @@ Element <- setRefClass(
     },
     
     getText = function() {
+      "Return the text content of this element if any"
       texts <- Filter(function(x) "Text" == class(x), contentList)
       if (length(texts) > 0) {
         return(texts[[1]]$toString())
@@ -118,10 +116,12 @@ Element <- setRefClass(
     },
     
     getChildren = function() {
+      "Get all the child Elements belong to this Element"
       Filter(function(x) "Element" == class(x), contentList)
     },
     
     getChild = function(name) {
+      "Retrun the first child element matching the name"
       for (content in contentList) {
         if ("Element" == class(content) & content$getName() == name) {
           #print(paste("Found child element", content))
