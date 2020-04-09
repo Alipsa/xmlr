@@ -58,12 +58,11 @@ Element <- setRefClass(
 
     removeContent = function(content) {
       "Remove the specified content from this element"
-      index <- findContentIndex(content)
-      if ( index != -1){
-        contentList <<- contentList[- index]
-      } else {
-        stop("There is no such content belonging to this Element")
-      }
+      # faster than looping with findContentIndex,
+      # sapply returns a vector with TRUE or FALSE of each object matching or not matching the content
+      idx <- sapply(contentList, identical, content)
+      if (all(!idx)) stop("There is no such content belonging to this Element")
+      contentList <<- contentList[!idx]
     },
 
     removeContentAt = function(index) {
