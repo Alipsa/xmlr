@@ -1,6 +1,7 @@
 #' Parse an xml string and create sax like events
 #'
-#' @description an XML parser based on an article on creating a quick and dirty xml parser by Steven Brandt
+#' @description an XML parser based on an article on creating a quick and dirty xml parser by Steven Brandt:
+#' https://www.javaworld.com/article/2077493/java-tip-128--create-a-quick-and-dirty-xml-parser.html
 Parser <- setRefClass(
   Class = "Parser",
   fields = c(
@@ -30,13 +31,13 @@ Parser <- setRefClass(
       CLOSE_TAG <<- 4
       START_TAG <<- 5
       ATTRIBUTE_LVALUE <<- 6
-      ATTRIBUTE_EQUAL <<- 9
-      ATTRIBUTE_RVALUE <<- 10
       QUOTE <<- 7
       IN_TAG <<- 8
+      ATTRIBUTE_EQUAL <<- 9
+      ATTRIBUTE_RVALUE <<- 10
+      DONE <<- 11
       SINGLE_TAG <<- 12
       COMMENT <<- 13
-      DONE <<- 11
       DOCTYPE <<- 14
       PRE <<- 15
       CDATA <<- 16
