@@ -4,7 +4,6 @@
 \alias{printp}
 \alias{printp0}
 \alias{isRc}
-\alias{trim}
 \title{Common utility functions}
 \usage{
 printp(...)
@@ -12,13 +11,11 @@ printp(...)
 printp0(...)
 
 isRc(x, clazz = "refClass")
-
-trim(x)
 }
 \arguments{
 \item{...}{all the stuff that should be printed}
 
-\item{x}{the object to trim}
+\item{x}{the object to check}
 
 \item{clazz}{the name of the class e.g. "Element" for the Element class.
 Optional, if omitted it checks that the object is a reference class}
@@ -33,7 +30,5 @@ Common utility functions
 \item \code{printp0}: Simple combo of print and paste0.
 
 \item \code{isRc}: Check if the object is a reference class, similar to isS4().
-
-\item \code{trim}: Trim whitespace
 }}
 

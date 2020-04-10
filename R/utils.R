@@ -23,11 +23,20 @@ isRc <- function(x, clazz = "refClass") {
   is(x, clazz)
 }
 
-#' @describeIn utils Trim whitespace
-#' @param x the object to trim
-#' @export
-trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-
 notImplemented <- function(className, methodName, ...) {
   print(paste(paste0(className, "$", methodName), "Not implemented,", ...))
+}
+
+whitespace <- c(" ", "\t", "\n", "\r" , "\v", "\f")
+
+hasWhiteSpace <- function(string) {
+  if (is.null(string)) return(FALSE)
+  str <- strsplit(string, "")[[1]]
+  any(str %in% whitespace)
+}
+
+isWhiteSpaceChar <- function(char) {
+  if (is.null(char)) return(FALSE)
+  if (nchar(char, keepNA=TRUE) > 1)  return(hasWhiteSpace(char))
+  char %in% whitespace
 }

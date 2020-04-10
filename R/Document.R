@@ -52,7 +52,11 @@ Document <- setRefClass(
     },
 
     toString = function() {
-      paste0(content$root$toString())
+      if ("root" %in% names(content) & !is.null(content$root)) {
+        return(paste0(content$root$toString()))
+      }
+      print("Attempted toString on a rootless document; There is no root element for this document")
+      ""
     }
 
   )

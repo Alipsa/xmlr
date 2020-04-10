@@ -23,4 +23,8 @@ Collate:
   'Text.R'
   'Element.R'
   'Attribute.R'
+  'Stack.R'
+  'DomBuilder.R'
+  'Parser.R'
+  'XmlImporter.R'
 RoxygenNote: 7.1.0
