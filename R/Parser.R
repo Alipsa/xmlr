@@ -1,3 +1,6 @@
+#' Parse an xml string and create sax like events
+#'
+#' @description an XML parser based on an article on creating a quick and dirty xml parser by Steven Brandt
 Parser <- setRefClass(
   Class = "Parser",
   fields = c(
