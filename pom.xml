@@ -6,18 +6,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>se.alipsa</groupId>
-  <artifactId>rcdom</artifactId>
+  <artifactId>xmlr</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   
   <!-- general information about your package -->
   <name>rjdom</name>
   <description>XML creating and reading package for Renjin inspired by JDOM</description>
-  <url>https://github.com/alipsa/rcdom</url>
+  <url>https://github.com/alipsa/xmlr</url>
   <licenses>
     <license>
       <name>MIT</name>
-      <url>https://github.com/alipsa/rcdom/blob/master/LICENSE</url>
+      <url>https://github.com/alipsa/xmlr/blob/master/LICENSE</url>
     </license>
   </licenses>
   <developers>
@@ -29,9 +29,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git:https://github.com/alipsa/rcdom.git</connection>
-    <developerConnection>scm:git:https://github.com/alipsa/rcdom.git</developerConnection>
-    <url>https://github.com/alipsa/rcdom/tree/master</url>
+    <connection>scm:git:https://github.com/alipsa/xmlr.git</connection>
+    <developerConnection>scm:git:https://github.com/alipsa/xmlr.git</developerConnection>
+    <url>https://github.com/alipsa/xmlr/tree/master</url>
   </scm>
     
   <properties>

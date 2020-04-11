@@ -16,18 +16,18 @@ test_that("Document can be created", {
 })
 
 test_that("Element can have Namespace and attribute", {
-  ns <- Attribute$new("xmlns:env", "http://alipsa.se/rcdom")
+  ns <- Attribute$new("xmlns:env", "http://alipsa.se/xmlr")
   e2 <- Element$new(name="env:Foo")
   e2$setAttributeObj(ns)
   expect_equal(info="Element name", e2$getName(), "env:Foo" )
-  expect_equal(info="namespace prefix", e2$getAttribute("xmlns:env")$getValue(), "http://alipsa.se/rcdom")
+  expect_equal(info="namespace prefix", e2$getAttribute("xmlns:env")$getValue(), "http://alipsa.se/xmlr")
   #expect_equal(info="NamespacePrefix directly from element", e2$getNamespacePrefix(), "env")
   attr <- Attribute$new(name="style", value="color:white")
   expect_equal(info="attr with paste", paste0(attr), "style='color:white'")
   e2$setAttributeObj(attribute=attr)
   e2$setAttribute(name="href", value="http://www.nu.se")
   output <- capture.output(print(e2))
-  expect_equal(output, "<env:Foo xmlns:env='http://alipsa.se/rcdom' style='color:white' href='http://www.nu.se'></env:Foo>")
+  expect_equal(output, "<env:Foo xmlns:env='http://alipsa.se/xmlr' style='color:white' href='http://www.nu.se'></env:Foo>")
 })
 
 test_that("Abstract classes cannot be instantiated", {

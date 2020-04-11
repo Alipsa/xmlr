@@ -1,4 +1,4 @@
-#' Create a rcdom object tree based on parsing events
+#' Create a xmlr object tree based on parsing events
 DomBuilder <- setRefClass(
   Class = "DomBuilder",
   fields = c(

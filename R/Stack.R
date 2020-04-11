@@ -1,7 +1,8 @@
 #' A general purpose linked stack
 #'
 
-#' @export
+#' @export Stack
+#' @exportClass Stack
 Stack <- setRefClass(
   Class="Stack",
   fields = list(

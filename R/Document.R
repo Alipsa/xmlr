@@ -5,7 +5,8 @@
 #' Methods allow access to the root element as well as the
 #' DocType and other document-level information.
 
-#' @export
+#' @export Document
+#' @exportClass Document
 Document <- setRefClass(
   Class = "Document",
   fields = list(
@@ -25,7 +26,7 @@ Document <- setRefClass(
 
     setRootElement = function(element) {
       content$root <<- element
-      return(.self)
+      return(invisible(.self))
     },
 
     getRootElement = function() {
@@ -40,7 +41,7 @@ Document <- setRefClass(
     setBaseURI = function(uri) {
       "Sets the effective URI from which this document was loaded"
       m_baseURI <<- uri
-      return(.self)
+      return(invisible(.self))
     },
 
     getDocType = function() {
@@ -57,6 +58,10 @@ Document <- setRefClass(
       }
       print("Attempted toString on a rootless document; There is no root element for this document")
       ""
+    },
+
+    show = function() {
+      cat(toString())
     }
 
   )

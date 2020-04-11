@@ -4,9 +4,9 @@
 \name{DomBuilder-class}
 \alias{DomBuilder-class}
 \alias{DomBuilder}
-\title{Create a rcdom object tree based on parsing events}
+\title{Create a xmlr object tree based on parsing events}
 \description{
-Create a rcdom object tree based on parsing events
+Create a xmlr object tree based on parsing events
 }
 \section{Methods}{
 

@@ -1,4 +1,4 @@
 library(testthat)
-library(rcdom)
+library(xmlr)
 
-test_check("rcdom")
+test_check("xmlr")

@@ -1,12 +1,13 @@
 #' A reference class representing an tag (element) attribute
 
-#' @export
+#' @export Attribute
+#' @exportClass Attribute
 Attribute <- setRefClass(
   Class = "Attribute",
   fields = list(
     attributeName = "character",
-    attributeValue = "character",
-    attributeParent = "Element"
+    attributeValue = "character"
+    #, attributeParent = "Element"
   ),
   methods = list(
     # @param name The name (character) of the new Attribute

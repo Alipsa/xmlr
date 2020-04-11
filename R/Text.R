@@ -2,7 +2,8 @@
 #' @details
 #' An XML character sequence. Provides a modular, parentable method of representing text.
 
-#' @export
+#' @export Text
+#' @exportClass Text
 Text <- setRefClass(
   Class = "Text",
   contains = "Content",

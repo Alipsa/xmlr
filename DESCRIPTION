@@ -1,4 +1,4 @@
-Package: rcdom
+Package: xmlr
 Version: 0.1.0
 Date: 2020-04-02
 Title: Read, write and work with XML files
@@ -9,13 +9,13 @@ Encoding: UTF-8
 Description: for creating and reading and manipulating XML 
   inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
 License: MIT + file LICENSE
-URL: https://github.com/Alipsa/rcdom
-BugReports: https://github.com/Alipsa/rcdom/issues
+URL: https://github.com/Alipsa/xmlr
+BugReports: https://github.com/Alipsa/xmlr/issues
 Imports:
     methods
 Suggests: testthat
 Collate:
-  'rcdom.R'
+  'xmlr.R'
   'utils.R'
   'AbstractClass.R'
   'Content.R'

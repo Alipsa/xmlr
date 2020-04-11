@@ -4,7 +4,8 @@
 #' elements and content, directly access the element's textual content, and
 #' manipulate its attributes.
 #'
-#' @export
+#' @export Element
+#' @exportClass Element
 Element <- setRefClass(
   Class ="Element",
   contains = "Content",
@@ -33,7 +34,7 @@ Element <- setRefClass(
       idx <- length(contentList) + 1
       content$setParent(.self)
       contentList[[idx]] <<- content
-      return(.self)
+      return(invisible(.self))
     },
 
     getContent = function() {
@@ -104,7 +105,7 @@ Element <- setRefClass(
     setAttributeObj = function(attribute) {
       "Add or replace an attribute"
       attributeList[[attribute$getName()]] <<- attribute
-      return(.self)
+      return(invisible(.self))
     },
     
     setText = function(text) {
@@ -117,7 +118,7 @@ Element <- setRefClass(
       textObj$setParent(.self)
       contentList <<- list()
       contentList[[text]] <<- textObj
-      return(.self)
+      return(invisible(.self))
     },
     
     getText = function() {
