@@ -89,6 +89,11 @@ Element <- setRefClass(
       return(m_name)
     },
 
+    getAttributes = function() {
+      "Get the list of attribute objects"
+      return(attributeList)
+    },
+
     getAttribute = function(name) {
       "Get an Attribute object"
       #print(paste("Getting attribute for", name))
@@ -130,6 +135,12 @@ Element <- setRefClass(
         return("")
       }
     },
+
+    hasText = function() {
+      "Return TRUE if this element has a Text node"
+      texts <- Filter(function(x) "Text" == class(x), contentList)
+     return( length(texts) > 0)
+    },
     
     getChildren = function() {
       "Get all the child Elements belong to this Element"
@@ -150,7 +161,7 @@ Element <- setRefClass(
       cat(toString())
     },
 
-    toString = function() {
+    toString = function(includeContent = TRUE) {
       attrString <- ""
       if (length(attributeList) > 0) {
       for (i in 1:length(attributeList)) {
@@ -160,12 +171,14 @@ Element <- setRefClass(
       startElement <- "<"
 
       start <- paste0(startElement, m_name, attrString, ">")
-      children <- ""
-      for (child in contentList) {
-        children <- paste0(children, child$toString())
+      contents <- ""
+      if (includeContent) {
+        for (content in contentList) {
+          contents <- paste0(contents, content$toString())
+        }
       }
       end <- paste0("</", m_name, ">")
-      paste0(start, children, end)
+      paste0(start, contents, end)
     }
   )
 )

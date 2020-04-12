@@ -1,4 +1,4 @@
-context("XmlImporter unit tests")
+context("xmlConverter unit tests")
 
 test_that("XML Strings can be imported", {
   doc <- parse.xmlstring("<foo><bar><baz val='the baz attribute'/></bar></foo>")

@@ -4,6 +4,7 @@ Date: 2020-04-02
 Title: Read, write and work with XML files
 Author: Per Nyfelt [aut, cre]
 Maintainer: Per Nyfelt <per@alipsa.se>
+Copyright: Alipsa HB
 Depends: R (>= 3.1.0)
 Encoding: UTF-8
 Description: for creating and reading and manipulating XML 
@@ -26,5 +27,5 @@ Collate:
   'Stack.R'
   'DomBuilder.R'
   'Parser.R'
-  'XmlImporter.R'
+  'xmlConverter.R'
 RoxygenNote: 7.1.0
