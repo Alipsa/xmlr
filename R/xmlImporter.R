@@ -1,10 +1,10 @@
 #' @title XML import functions
 #' @name xmlImporter
+#' @return a Document object
 NULL
 
 #' @describeIn xmlImporter create a Document from a character string
 #' @param xml an xml character string to parse
-#' @return a Document object
 #' @export
 parse.xmlstring <- function(xml) {
   "parse an xml string into a document"
@@ -17,7 +17,6 @@ parse.xmlstring <- function(xml) {
 
 #' @describeIn xmlImporter create a Document from a xml file
 #' @param fileName the name of the xml file to parse
-#' @return a Document object
 #' @export
 parse.xmlfile <- function(fileName) {
   # TODO: consider parsing directly from the file stream instead of loading up the content to a string first

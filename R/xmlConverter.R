@@ -1,14 +1,11 @@
-#' @title XML conversion functions
-#' @name xmlConverter
-NULL
-
-#' @describeIn xmlConverter create a data frame from a xmlr Element
-#' @description this is a convenience method to take all the children of the given Element
+#' @title Create a data frame from a xmlr Element
+#' @description This is a convenience method to take all the children of the given Element
 #' and create a data frame based on the content of each child where each child constitutes a row
 #' and the attributes or elements (including text) will constiture the columns.
 #' It assumes a homeogenous structure and the column names are takes from the first child
-#' @param element the element to convert
 #' @return a data frame
+#' @param element the element to convert
+
 #' @export
 xmlrToDataFrame <- function(element) {
   if (!isRc(element, "Element")) {
