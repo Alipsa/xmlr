@@ -46,6 +46,8 @@ manipulate its attributes.
 
 \item{\code{getAttribute(name)}}{Get an Attribute object}
 
+\item{\code{getAttributes()}}{Get the list of attribute objects}
+
 \item{\code{getChild(name)}}{Retrun the first child element matching the name}
 
 \item{\code{getChildren()}}{Get all the child Elements belong to this Element}
@@ -57,6 +59,8 @@ manipulate its attributes.
 \item{\code{getName()}}{Return the name of this Element}
 
 \item{\code{getText()}}{Return the text content of this element if any}
+
+\item{\code{hasText()}}{Return TRUE if this element has a Text node}
 
 \item{\code{removeContent(content)}}{Remove the specified content from this element}
 

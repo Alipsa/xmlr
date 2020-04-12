@@ -44,6 +44,9 @@ parse.xmlfile <- function(fileName) {
 #' @return a data frame
 #' @export
 xmlrToDataFrame <- function(element) {
+  if (!isRc(element, "Element")) {
+    stop(paste("element argument is not an Element Reference Class:", class(element)))
+  }
   xmldf <- NULL
   for (child in element$getChildren()) {
     row <- list()

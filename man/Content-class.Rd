@@ -6,12 +6,6 @@
 \alias{Content}
 \title{An abstract reference class representing content that can belong to an Element}
 \description{
-An abstract reference class representing content that can belong to an Element
+#' @field m_parent the parent (if any)
 }
-\section{Fields}{
-
-\describe{
-\item{\code{m_parent}}{the parent (if any)}
-}}
-
 
