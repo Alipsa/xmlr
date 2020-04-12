@@ -27,5 +27,6 @@ Collate:
   'Stack.R'
   'DomBuilder.R'
   'Parser.R'
+  'xmlImporter.R'
   'xmlConverter.R'
 RoxygenNote: 7.1.0

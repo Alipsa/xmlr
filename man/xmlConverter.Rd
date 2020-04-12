@@ -2,29 +2,15 @@
 % Please edit documentation in R/xmlConverter.R
 \name{xmlConverter}
 \alias{xmlConverter}
-\alias{parse.xmlstring}
-\alias{parse.xmlfile}
 \alias{xmlrToDataFrame}
-\title{XML import functions}
+\title{XML conversion functions}
 \usage{
-parse.xmlstring(xml)
-
-parse.xmlfile(fileName)
-
 xmlrToDataFrame(element)
 }
 \arguments{
-\item{xml}{an xml character string to parse}
-
-\item{fileName}{the name of the xml file to parse}
-
 \item{element}{the element to convert}
 }
 \value{
-a Document object
-
-a Document object
-
 a data frame
 }
 \description{
@@ -35,10 +21,6 @@ It assumes a homeogenous structure and the column names are takes from the first
 }
 \section{Functions}{
 \itemize{
-\item \code{parse.xmlstring}: create a Document from a character string
-
-\item \code{parse.xmlfile}: create a Document from a xml file
-
 \item \code{xmlrToDataFrame}: create a data frame from a xmlr Element
 }}
 
