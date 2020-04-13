@@ -17,8 +17,6 @@ parse.xmlfile(fileName)
 }
 \value{
 a Document object
-
-a Document object
 }
 \description{
 XML import functions

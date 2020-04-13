@@ -1,20 +1,22 @@
 Package: xmlr
 Version: 0.1.0
 Date: 2020-04-02
-Title: Read, write and work with XML files
+Title: Read, Write and Work with XML Files
 Author: Per Nyfelt [aut, cre]
 Maintainer: Per Nyfelt <per@alipsa.se>
 Copyright: Alipsa HB
 Depends: R (>= 3.1.0)
 Encoding: UTF-8
-Description: for creating and reading and manipulating XML 
-  inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
+Description: XML package for creating and reading and manipulating XML, implemented with Reference Classes.
 License: MIT + file LICENSE
 URL: https://github.com/Alipsa/xmlr
 BugReports: https://github.com/Alipsa/xmlr/issues
 Imports:
     methods
-Suggests: testthat
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
 Collate:
   'xmlr.R'
   'utils.R'
@@ -30,3 +32,4 @@ Collate:
   'xmlImporter.R'
   'xmlConverter.R'
 RoxygenNote: 7.1.0
+VignetteBuilder: knitr

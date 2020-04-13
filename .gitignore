@@ -6,3 +6,6 @@
 /.idea/
 /target/
 /*.Rproj
+inst/doc
+doc
+Meta

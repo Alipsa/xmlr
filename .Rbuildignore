@@ -1,7 +1,11 @@
 ^.*\.Rproj$
+^.Rhistory
 ^\.Rproj\.user$
 ^\.idea$
 ^.*\.iml$
 ^dev.R
 ^target$
 ^pom.xml
+^cran-comments.md
+^doc$
+^Meta$
