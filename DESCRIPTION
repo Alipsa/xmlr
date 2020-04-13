@@ -25,7 +25,6 @@ Collate:
   'Document.R'
   'Text.R'
   'Element.R'
-  'Attribute.R'
   'Stack.R'
   'DomBuilder.R'
   'Parser.R'

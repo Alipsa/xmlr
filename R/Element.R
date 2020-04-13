@@ -42,21 +42,6 @@ Element <- setRefClass(
       return(contentList)
     },
 
-    getContentSize = function() {
-      "Return the number of elements in the content list belonging to this this element"
-      length(contentList)
-    },
-
-    findContentIndex = function(content) {
-      "Find the position of the content in the contentList or -1 if not found"
-      for (idx in seq_along(contentList)) {
-        if(identical(content, contentList[[idx]])) {
-          return(idx)
-        }
-      }
-      -1
-    },
-
     removeContent = function(content) {
       "Remove the specified content from this element"
       # faster than looping with findContentIndex,
@@ -80,8 +65,14 @@ Element <- setRefClass(
       printp("Element", "cloneContent()", "Not implemented, should return a list containing detached clones of this parent's content list")
     },
 
-    indexOf = function(child) {
-      printp("Element", "indexOf(child)", "Not implemented, should return the number of children in this parent's content list.")
+    indexOf = function(content) {
+      "Find the position of the content in the contentList or -1 if not found"
+      for (idx in seq_along(contentList)) {
+        if(identical(content, contentList[[idx]])) {
+          return(idx)
+        }
+      }
+      -1
     },
 
     getName = function() {
@@ -89,27 +80,55 @@ Element <- setRefClass(
       return(m_name)
     },
 
+    setName = function(name) {
+      "Set the name of this Element"
+      m_name <<- as.character(name)
+      return(invisible(.self))
+    },
+
     getAttributes = function() {
-      "Get the list of attribute objects"
+      "Get the list of attributes"
       return(attributeList)
     },
 
     getAttribute = function(name) {
-      "Get an Attribute object"
-      #print(paste("Getting attribute for", name))
+      "Get an attribute value"
       return(attributeList[[name]])
     },
 
     setAttribute = function(name, value) {
-      "Add or replace an attribute"
-      attr <- Attribute$new(name=name, value=value)
-      setAttributeObj(attr)
+      "Add or replace an attribute, parameters will be converted to characters"
+      attributeList[[as.character(name)]] <<- as.character(value)
+      return(invisible(.self))
     },
 
-    # function overloading not supported with reference classes so change the method name
-    setAttributeObj = function(attribute) {
-      "Add or replace an attribute"
-      attributeList[[attribute$getName()]] <<- attribute
+    setAttributes = function(attributes) {
+      "Replace the attributes with this named list, NULL or empty list will remove all attributes, all values will be converted to characters"
+
+      if (is.null(attributes)) {
+        attributeList <<- list()
+      }
+
+      if ("list" != typeof(attributes)) {
+        stop("Argument to setAttributes must be a list")
+      }
+      if (length(names(attributes)) != length(attributes)) {
+        stop("All attribute values in the list must be named")
+      }
+
+      attributeList <<- lapply(attributes, as.character)
+      return(invisible(.self))
+    },
+
+    addAttributes = function(attributes) {
+      "Add the supplied attributes to the attributeList of this Element"
+      if ("list" != typeof(attributes)) {
+        stop("Argument to setAttributes must be a list")
+      }
+      if (length(names(attributes)) != length(attributes)) {
+        stop("All attribute values in the list must be named")
+      }
+      attributeList <<- append(attributeList, lapply(attributes, as.character))
       return(invisible(.self))
     },
     
@@ -164,8 +183,10 @@ Element <- setRefClass(
     toString = function(includeContent = TRUE) {
       attrString <- ""
       if (length(attributeList) > 0) {
-      for (i in 1:length(attributeList)) {
-        attrString <- paste(attrString, attributeList[[i]]$toString())
+        attNames <- names(attributeList)
+        for (i in 1:length(attributeList)) {
+          attributeString <- paste0(attNames[[i]], "='", attributeList[[i]], "'")
+          attrString <- paste(attrString, attributeString)
         }
       }
       startElement <- "<"

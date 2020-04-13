@@ -40,13 +40,13 @@ manipulate its attributes.
 \section{Methods}{
 
 \describe{
+\item{\code{addAttributes(attributes)}}{Add the supplied attributes to the attributeList of this Element}
+
 \item{\code{addContent(content)}}{Appends the child to the end of the content list. return the parent (the calling object)}
 
-\item{\code{findContentIndex(content)}}{Find the position of the content in the contentList or -1 if not found}
+\item{\code{getAttribute(name)}}{Get an attribute value}
 
-\item{\code{getAttribute(name)}}{Get an Attribute object}
-
-\item{\code{getAttributes()}}{Get the list of attribute objects}
+\item{\code{getAttributes()}}{Get the list of attributes}
 
 \item{\code{getChild(name)}}{Retrun the first child element matching the name}
 
@@ -54,21 +54,23 @@ manipulate its attributes.
 
 \item{\code{getContent()}}{Returns the full content of the element as a List that may contain objects of type Text, Element, Comment, ProcessingInstruction, CDATA, and EntityRef}
 
-\item{\code{getContentSize()}}{Return the number of elements in the content list belonging to this this element}
-
 \item{\code{getName()}}{Return the name of this Element}
 
 \item{\code{getText()}}{Return the text content of this element if any}
 
 \item{\code{hasText()}}{Return TRUE if this element has a Text node}
 
+\item{\code{indexOf(content)}}{Find the position of the content in the contentList or -1 if not found}
+
 \item{\code{removeContent(content)}}{Remove the specified content from this element}
 
 \item{\code{removeContentAt(index)}}{Remove the content at the given index and return the content that was removed}
 
-\item{\code{setAttribute(name, value)}}{Add or replace an attribute}
+\item{\code{setAttribute(name, value)}}{Add or replace an attribute, parameters will be converted to characters}
 
-\item{\code{setAttributeObj(attribute)}}{Add or replace an attribute}
+\item{\code{setAttributes(attributes)}}{Replace the attributes with this named list, NULL or empty list will remove all attributes, all values will be converted to characters}
+
+\item{\code{setName(name)}}{Set the name of this Element}
 
 \item{\code{setText(text)}}{Replace all content with the text supplied}
 }}

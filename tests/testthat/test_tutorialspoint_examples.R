@@ -106,4 +106,16 @@ test_that("XML to Data Frame works", {
   expect_equal(ncol(xmldataframe), 5)
   expect_equal(xmldataframe[5, 3], "843.25")
   expect_equal(which(xmldataframe$NAME == "Guru"), 8)
+
+  # Not part of the tuorials example but useful as it mixed attributes with elements
+  xml <- "
+  <groceries>
+    <item type='fruit' number='4'>Apples</item>
+    <item type='fruit' number='2'>Bananas</item>
+    <item type='vegetables' number='6'>Tomatoes</item>
+  </groceries>
+  "
+  doc <- parse.xmlstring(xml)
+  xmldataframe <- xmlrToDataFrame(doc$getRootElement())
+  expect_equal(xmldataframe[3, 1], "vegetables")
 })

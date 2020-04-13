@@ -30,9 +30,8 @@ DomBuilder <- setRefClass(
       "start element event; @param name the element name, @param attributes a named list of attributes"
       #printp("Start element", name)
       e <- Element$new(name)
-      for (attName in names(attributes)) {
-        e$setAttribute(attName, attributes[[attName]])
-      }
+      #print(str(attributes))
+      e$setAttributes(attributes)
       stack$push(e)
     },
 

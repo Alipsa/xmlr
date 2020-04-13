@@ -14,6 +14,15 @@ test_that("Elements can be created and printed", {
 
   expect_equal(capture.output(print(foo)), xmlString)
   expect_equal(paste(foo), xmlString)
+
+  e <- Element$new("")
+  e$setName("now")
+  time <- Sys.time()
+  e$setAttribute("time", time)
+  cdate <- date()
+  e$setText(cdate)
+  expect_equal(e$getAttribute("time"), as.character(time))
+  expect_equal(e$getText(), cdate)
 })
 
 test_that("Deep trees works", {
@@ -79,4 +88,37 @@ test_that("Elements can be removed", {
   )
   # As we have just removed baz, removing it again should result in an error
   expect_error(foo$removeContent(baz), "There is no such content belonging to this Element")
+})
+
+test_that("Conversions works and wrong input does not work", {
+  e <- Element$new("test")
+  attributelist <- c("foo", "bar")
+  expect_error(e$setAttributes(attributelist), "Argument to setAttributes must be a list")
+  attributelist <- as.list(attributelist)
+  expect_error(e$setAttributes(attributelist), "All attribute values in the list must be named")
+  # now we name it an all should work
+  names(attributelist) <- c("first", "second")
+  e$setAttributes(attributelist)
+  expect_equal(e$getAttribute("second"), "bar")
+  # add a number to the list
+  attributelist$numbers <- 3L
+  e$setAttributes(attributelist)
+  expect_equal(e$getAttribute("numbers"), "3")
+  bla <- c("bla")
+  e$setAttribute(bla, c(8))
+  expect_equal(e$getAttribute("bla"), "8")
+  expect_equal(e$getAttributes()[["bla"]] , "8")
+})
+
+test_that("Text nodes can be created and also mixed", {
+  e <- Element$new("cars")$setText("Volvo")
+  expect_equal(e$getText(), "Volvo")
+  xml <- "<cars>Volvo<value sek='200000'></value></cars>"
+  e <- Element$new("cars")
+  e$addContent(Text$new("Volvo"))
+  e$addContent(Element$new("value")$setAttribute("sek", "200000"))
+  expect_equal(e$toString(), xml)
+  xml <- "<cars>Volvo<value sek='200000'></value>: for sale</cars>"
+  e$addContent(Text$new(": for sale"))
+  expect_equal(e$toString(), xml)
 })

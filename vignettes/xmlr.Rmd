@@ -18,3 +18,232 @@ knitr::opts_chunk$set(
 library(xmlr)
 
 ```
+Xmlr is a document object model of XML written in base-R. It is similar in functionality to the XML package but does not have any dependencies or require compilation. Xmlr allows you to read, write and manipulate XML.
+
+# Why xmlr?
+I had problems on one of my machines to install the XML package (some gcc issue) so needed an alternative.
+As I have been thinking about doing something more comprehensive with Reference Classes I decided to create
+a pure base-R DOM model with some simple ways to do input and output to strings and files. As it turned out to
+be useful to me, I thought it might be for others as well, so I decided to open source and publish it.
+
+# Creating the XML tree
+There are 2 ways to create an XML tree, by parsing XML text or by creating it programatically.
+
+## Parsing
+Xmlr supports two ways of parsing text: either from a character string or from an xml file.
+To parse a string you do something like:
+```{r}
+doc <- parse.xmlstring("
+<table xmlns='http://www.w3.org/TR/html4/'>
+    <tr>
+        <td class='fruit'>Apples</td>
+        <td class='fruit'>Bananas</td>
+    </tr>
+</table>")
+```
+...and similarly to parse a XML file you do:
+```{r, eval = FALSE}
+doc <- parse.xmlfile("pom.xml")
+```
+
+## Programmatic creation
+To create the following xml
+```
+<table xmlns='http://www.w3.org/TR/html4/'>
+    <tr>
+        <td class='fruit'>Apples</td>
+        <td class='fruit'>Bananas</td>
+    </tr>
+</table>
+
+```
+...you could do something like this:
+```{r}
+doc <- Document$new()
+root <- Element$new("table")
+root$setAttribute("xmlns", "http://www.w3.org/TR/html4/")
+doc$setRootElement(root)
+
+root$addContent(
+Element$new("tr")
+  $addContent(
+    Element$new("td")$setAttribute("class", "fruit")$setText("Apples")
+  )
+  $addContent(
+    Element$new("td")$setAttribute("class", "fruit")$setText("Bananas")
+  )
+)
+# print it out just to show the content
+print(doc)
+```
+## Navigating the tree
+As XML is an hierarchial model it is very well suited for an Object based implementation. The top level class is the Document class. It contains a refrerence to the root element that you get through the `getRootElement()` method.
+
+Elements contains attributes and child content (more elements or a Text node). To get the text of the second td element (tag) you would something like this:
+```{r}
+doc$getRootElement()$getChild("tr")$getChildren()[[2]]$getText()
+```
+This is useful when you have a more complex structure and you want to create a data.frame of a part of the xml. e.g.
+```{r}
+groceriesDf <- NULL
+for ( child in doc$getRootElement()$getChild("tr")$getChildren() ) {
+  row <- list()
+  row[["class"]] <- child$getAttribute("class")
+  row[["item"]] <- child$getText()
+  if (is.null(groceriesDf)) {
+    groceriesDf <- data.frame(row, stringsAsFactors = FALSE)
+  } else {
+    groceriesDf <- rbind(groceriesDf, row)
+  }
+}
+groceriesDf
+```
+## Outputting
+As you saw in the example above the default print will render the object model as an XML string. Print is available for each element and will print all the content in and below this element e.g.
+```{r}
+# print the contents of the tr element 
+root$getChild("tr")
+```
+# The object model
+The xmlr object model is very simple, you basically only need to care about the Document and the Element classes.
+In general all Objects has a toString() function that returns the textual XML representation of the object. 
+as.character and as.vector are also specified for each class allowing you to do stuff like:
+```{r}
+paste("The root element is", root)
+```
+Which is the same as doing `paste("The root element is", root$toString())`
+
+## Document
+As mentioned before the most useful thing to do with the Document object is to set or get the rootElement. In a future version you might also be interested in processing instructions etc. but those are not supported yet.
+
+## Element
+An Element has three "interests", name, attributes and child nodes. text is handled in a special way (there is a Text class) since the form `<foo>Som text here</foo>` is very common.
+
+### Name
+This set the name of the Element (the tag) e.g. to create the element <foo/> you can either do `e <- Element$new("foo")`
+or use the **setName(name)** function:
+```{r}
+e <- Element$new()
+e$setName("foo")
+```
+To get the Element name you use the function **getName()**
+
+### Attributes
+The following functions are available for attributes:
+
+* **getAttribute(name)**
+This gets the attribute value for the name argument supplied, e.g. `child$getAttribute("class")`
+* **getAttributes()**
+This gives you the list of attributes for this Element. You can navigate the list just like normal e.g.
+`child$getAttributes()[["class"]]` or use in a loop or apply etc.
+* **setAttribute(name, value)**
+Creates or updates an existing attribute for the name and value supplied. E.g. `root$setAttribute("xmlns", "http://www.w3.org/TR/html4/")`. 
+* **setAttributes(attributes)**
+This sets all the attributes of the Element to the list given. Note that you MUST supply a named list for this to work.
+Any existing attribute will vanish.
+* **addAttributes(attributes)**
+Similar to setAttributes but will not erase any exsting attributes.
+
+### Content
+Content can be either other Element(s) or Text.
+
+For the xml
+```
+<foo>
+  <Bar note='Some text'</Bar>
+  <Baz note='More stuff'</Baz>
+</foo>
+```
+...you can do something like this:
+```{r}
+e <- Element$new("foo")$addContent(
+  Element$new("Bar")$setAttribute("note", "Some text")
+)$addContent(
+  Element$new("Baz")$setAttribute("note", "More stuff")
+)
+e
+```
+
+To retrieve content there are several ways:
+
+* **getContent()**
+This will get you the complete list of of content regardless if they are Elements or Text nodes.
+* **getChildren()**
+This will give you a list of Elements belonging to this element.
+* **removeContent(content)**
+This will remove the content supplied from this Elements content list.
+* **removeContentAt(index)**
+Same as above but for the position in the list matching the index supplied.
+* **indexOf(content)**
+Gives you the index of the content supplied or -1 if no content was found.
+* **getChild(name)**
+Gives you the *first* occurance of the Element that is a child of this element with the name matching the name supplied
+
+
+### Text
+As mentioned above Text is treated a bit special. 
+You typically use the **setText(text)** function to set text content e.g. to create `<car>Volvo</car>` you would do:
+```{r}
+e <- Element$new("car")$setText("Volvo")
+```
+However, for more complex cases it is possible to mix text and elements using the add Content. E.g. for the xml
+`<cars>Volvo<value sek='200000'></value></cars>`
+
+You can create it by creating and adding a Text node explicitly rather than using the setText function.
+```{r}
+  xml <- "<car>Volvo<value sek='200000'></value></car>"
+  e <- Element$new("car")
+  e$addContent(Text$new("Volvo"))
+  e$addContent(Element$new("value")$setAttribute("sek", "200000"))
+  stopifnot(e$toString() == xml)
+```
+# Other useful stuff
+There is a simplistic way to produce a dataframe from a XML tree: **xmlrToDataFrame(element)**
+it can be used (simliar to the xmlToDataFrame in the classic XML package) as follows:
+```{r}
+xml <- "
+<groceries>
+  <item type='fruit' number='4'>Apples</item>
+  <item type='fruit' number='2'>Bananas</item>
+  <item type='vegetables'number='6'>Tomatoes</item>
+</groceries>
+"
+doc <- parse.xmlstring(xml)
+xmldf <- xmlrToDataFrame(doc$getRootElement())
+xmldf
+```
+If you have a more complex xml structure you need to build your data frame "by hand" e.g. in a similar fashion to what 
+was outlined in the "Navigating the tree" section.
+
+## Misc
+There are some general purpose classes and functions that might be useful if you want to extend or customize xmlr:
+
+* **isRc(x, clazz = "refClass")**
+Check if the object is a reference class, similar to isS4() when only the object is supplied but can be narrowed 
+down to the specific RC class if the clazz argument is given. E.g. to check that the object is an Element you can do
+```{r}
+isRc(Element$new("Hello"), "Element")
+isRc(Text$new("Hello"), "Element")
+
+```
+* **Stack**
+This is a general purpose linked stack with the expected functions i.e.
+    * **pop()**
+    Retrieve and remove the top item from the stack
+    * **push(item)**
+    Add an item to the stack
+    * **peek()**
+    Retrieve the top item from the stack without removing it
+    * **size()**
+    Get the number of items on the stack
+    * **isEmpty()**
+    Returns TRUE if the stack is empty or FALSE if it is still has items.
+
+* **Parser**
+A general purpose, SAX like, parser that you could create your own builder for. A builder needs to have the following functions (See **DomBuilder** for an example):
+    * **startDocument()**
+    * **endDocument()**
+    * **startElement(name, attributes)**
+    * **endElement(name)**
+    * **text(text)**
+
