@@ -11,8 +11,8 @@
   <packaging>jar</packaging>
   
   <!-- general information about your package -->
-  <name>rjdom</name>
-  <description>XML creating and reading package for Renjin inspired by JDOM</description>
+  <name>xmlr</name>
+  <description>XML creating, manipulating, and reading package for Renjin</description>
   <url>https://github.com/alipsa/xmlr</url>
   <licenses>
     <license>
