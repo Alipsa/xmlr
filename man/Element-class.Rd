@@ -50,7 +50,7 @@ manipulate its attributes.
 
 \item{\code{getAttributes()}}{Get the list of attributes}
 
-\item{\code{getChild(name)}}{Retrun the first child element matching the name}
+\item{\code{getChild(name)}}{Return the first child element matching the name}
 
 \item{\code{getChildren()}}{Get all the child Elements belong to this Element}
 
