@@ -98,6 +98,8 @@ for ( child in doc$getRootElement()$getChild("tr")$getChildren() ) {
 }
 groceriesDf
 ```
+You can also move upwards in the tree by using the **getParent()** function which exists for all Content (Element and Text nodes).
+
 ## Outputting
 As you saw in the example above the default print will render the object model as an XML string. Print is available for each element and will print all the content in and below this element e.g.
 ```{r}
