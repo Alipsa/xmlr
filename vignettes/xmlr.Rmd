@@ -27,10 +27,10 @@ a pure base-R DOM model with some simple ways to do input and output to strings 
 be useful to me, I thought it might be for others as well, so I decided to open source and publish it.
 
 # Creating the XML tree
-There are 2 ways to create an XML tree, by parsing XML text or by creating it programatically.
+There are 2 ways to create an XML tree, by parsing XML text or by creating it programmatically.
 
 ## Parsing
-Xmlr supports two ways of parsing text: either from a character string or from an xml file.
+Xmlr supports two ways of parsing text: either from a character string or from a xml file.
 To parse a string you do something like:
 ```{r}
 doc <- parse.xmlstring("
@@ -77,13 +77,13 @@ Element$new("tr")
 print(doc)
 ```
 ## Navigating the tree
-As XML is an hierarchial model it is very well suited for an Object based implementation. The top level class is the Document class. It contains a refrerence to the root element that you get through the `getRootElement()` method.
+As XML is a hierarchical model it is very well suited for an Object based implementation. The top-level class is the Document class. It contains a reference to the root element that you get through the `getRootElement()` method.
 
-Elements contains attributes and child content (more elements or a Text node). To get the text of the second td element (tag) you would something like this:
+Elements contain attributes and child content (more elements or a Text node). To get the text of the second td element (tag) you would something like this:
 ```{r}
 doc$getRootElement()$getChild("tr")$getChildren()[[2]]$getText()
 ```
-This is useful when you have a more complex structure and you want to create a data.frame of a part of the xml. e.g.
+This is useful when you have a more complex structure, and you want to create a data.frame of a part of the xml. e.g.
 ```{r}
 groceriesDf <- NULL
 for ( child in doc$getRootElement()$getChild("tr")$getChildren() ) {
@@ -143,6 +143,8 @@ This sets all the attributes of the Element to the list given. Note that you MUS
 Any existing attribute will vanish.
 * **addAttributes(attributes)**
 Similar to setAttributes but will not erase any exsting attributes.
+* **hasAttributes()**
+TRUE if any attributes are defined for the element.
 
 ### Content
 Content can be either other Element(s) or Text.
@@ -167,18 +169,21 @@ e
 To retrieve content there are several ways:
 
 * **getContent()**
-This will get you the complete list of of content regardless if they are Elements or Text nodes.
+This will get you the complete list of content regardless if they are Elements or Text nodes.
 * **getChildren()**
 This will give you a list of Elements belonging to this element.
 * **removeContent(content)**
 This will remove the content supplied from this Elements content list.
 * **removeContentAt(index)**
 Same as above but for the position in the list matching the index supplied.
-* **indexOf(content)**
+* **contentIndex(content)**
 Gives you the index of the content supplied or -1 if no content was found.
 * **getChild(name)**
-Gives you the *first* occurance of the Element that is a child of this element with the name matching the name supplied
-
+Gives you the *first* occurrence of the Element that is a child of this element with the name matching the name supplied
+* **hasContent()**
+TRUE if there is any content belonging to this element
+* **hasChildren()**
+TRUE if there is any child elements for this element
 
 ### Text
 As mentioned above Text is treated a bit special. 
@@ -186,7 +191,7 @@ You typically use the **setText(text)** function to set text content e.g. to cre
 ```{r}
 e <- Element$new("car")$setText("Volvo")
 ```
-However, for more complex cases it is possible to mix text and elements using the add Content. E.g. for the xml
+However, for more complex cases it is possible to mix text and elements using **addContent()**. E.g. for the xml
 `<cars>Volvo<value sek='200000'></value></cars>`
 
 You can create it by creating and adding a Text node explicitly rather than using the setText function.
@@ -197,9 +202,20 @@ You can create it by creating and adding a Text node explicitly rather than usin
   e$addContent(Element$new("value")$setAttribute("sek", "200000"))
   stopifnot(e$toString() == xml)
 ```
+To check if there is any text defined for this element you can use the function **hasText()**
+
+# Namespaces
+Namespaces is handled in a very simplistic way in xmlr. You declare the namespace as an attribute, and
+you maintain the correct prefix "manually" by prefixing the element name e.g:
+```{r}
+parent <- Element$new("parent")
+parent <- Element$new("parent")$setAttribute("xmlns:env", "http://some.namespace.com")
+parent$addContent(Element$new("env:child"))
+parent
+```
 # Other useful stuff
 There is a simplistic way to produce a dataframe from a XML tree: **xmlrToDataFrame(element)**
-it can be used (simliar to the xmlToDataFrame in the classic XML package) as follows:
+it can be used (similar to the xmlToDataFrame in the classic XML package) as follows:
 ```{r}
 xml <- "
 <groceries>

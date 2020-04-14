@@ -65,7 +65,7 @@ Element <- setRefClass(
       printp("Element", "cloneContent()", "Not implemented, should return a list containing detached clones of this parent's content list")
     },
 
-    indexOf = function(content) {
+    contentIndex = function(content) {
       "Find the position of the content in the contentList or -1 if not found"
       for (idx in seq_along(contentList)) {
         if(identical(content, contentList[[idx]])) {
@@ -73,6 +73,11 @@ Element <- setRefClass(
         }
       }
       -1
+    },
+
+    hasContent = function() {
+      "return TRUE if this element has any content, otherwise FALSE"
+      length(contentList) > 0
     },
 
     getName = function() {
@@ -131,6 +136,11 @@ Element <- setRefClass(
       attributeList <<- append(attributeList, lapply(attributes, as.character))
       return(invisible(.self))
     },
+
+    hasAttributes = function() {
+      "return TRUE if this element has any attributes, otherwise FALSE"
+      length(attributeList) > 0
+    },
     
     setText = function(text) {
       "Replace all content with the text supplied"
@@ -165,6 +175,11 @@ Element <- setRefClass(
       "Get all the child Elements belong to this Element"
       Filter(function(x) "Element" == class(x), contentList)
     },
+
+    hasChildren = function() {
+      "Return TRUE if this element has any child Element nodes"
+      length(.self$getChildren()) > 0
+    },
     
     getChild = function(name) {
       "Retrun the first child element matching the name"
@@ -182,7 +197,7 @@ Element <- setRefClass(
 
     toString = function(includeContent = TRUE) {
       attrString <- ""
-      if (length(attributeList) > 0) {
+      if (.self$hasAttributes()) {
         attNames <- names(attributeList)
         for (i in 1:length(attributeList)) {
           attributeString <- paste0(attNames[[i]], "='", attributeList[[i]], "'")

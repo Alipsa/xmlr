@@ -44,6 +44,8 @@ manipulate its attributes.
 
 \item{\code{addContent(content)}}{Appends the child to the end of the content list. return the parent (the calling object)}
 
+\item{\code{contentIndex(content)}}{Find the position of the content in the contentList or -1 if not found}
+
 \item{\code{getAttribute(name)}}{Get an attribute value}
 
 \item{\code{getAttributes()}}{Get the list of attributes}
@@ -58,9 +60,13 @@ manipulate its attributes.
 
 \item{\code{getText()}}{Return the text content of this element if any}
 
-\item{\code{hasText()}}{Return TRUE if this element has a Text node}
+\item{\code{hasAttributes()}}{return TRUE if this element has any attributes, otherwise FALSE}
 
-\item{\code{indexOf(content)}}{Find the position of the content in the contentList or -1 if not found}
+\item{\code{hasChildren()}}{Return TRUE if this element has any child Element nodes}
+
+\item{\code{hasContent()}}{return TRUE if this element has any content, otherwise FALSE}
+
+\item{\code{hasText()}}{Return TRUE if this element has a Text node}
 
 \item{\code{removeContent(content)}}{Remove the specified content from this element}
 

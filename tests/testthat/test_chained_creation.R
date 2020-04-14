@@ -40,9 +40,7 @@ test_that("Chained creation and traversion works", {
     for (student in studentList) {
       print("-------------------------")
       printp("Current Element :", student$getName())
-      att <- student$getAttribute("rollno")
-      #printp("rollno attribute is", att)
-      printp("Student roll no : ", att )
+      printp("Student roll no : ", student$getAttribute("rollno") )
       printp("First Name : ", student$getChild("firstname")$getText())
       printp("Last Name : ", student$getChild("lastname")$getText())
       printp("Nick Name : ", student$getChild("nickname")$getText())

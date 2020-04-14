@@ -14,25 +14,15 @@ xmlrToDataFrame <- function(element) {
   xmldf <- NULL
   for (child in element$getChildren()) {
     row <- list()
-    atts <- child$getAttributes()
-    attNames <- names(atts)
-    numAtts <- length(attNames)
-    if (numAtts > 0) {
-      for (i in 1:numAtts) {
-        row[[attNames[[i]]]] <- atts[[i]]
-      }
+    if (child$hasAttributes()) {
+      row <- append(row, child$getAttributes())
     }
     if (child$hasText()) {
       row[[child$getName()]] <- child$getText()
     }
     for (subchild in child$getChildren()) {
-      atts <- subchild$getAttributes()
-      attNames <- names(atts)
-      numAtts <- length(attNames)
-      if (numAtts > 0) {
-        for (i in 1:numAtts) {
-          row[[attNames[[i]]]] <- atts[[i]]
-        }
+      if (subchild$hasAttributes()) {
+        row <- append(row, subchild$getAttributes())
       }
       if (subchild$hasText()) {
         row[[subchild$getName()]] <- subchild$getText()

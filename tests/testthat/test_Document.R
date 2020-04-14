@@ -19,7 +19,6 @@ test_that("Documents can be created and printed", {
       $addContent(Element$new("td")$setText("Bananas"))
   )
   doc$setRootElement(root)
-  #printp("Document is", doc)
   table <- doc$getRootElement()
   expect_equal(table$getName(), "table")
   children <- table$getChild("tr")$getChildren()
@@ -30,6 +29,5 @@ test_that("Documents can be created and printed", {
   out <- capture.output({
     print(doc$getRootElement())
   })
-  #printp("out is", out)
   expect_match(out, xmlString)
 })
