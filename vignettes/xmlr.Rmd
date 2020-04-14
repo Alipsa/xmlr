@@ -144,7 +144,7 @@ Creates or updates an existing attribute for the name and value supplied. E.g. `
 This sets all the attributes of the Element to the list given. Note that you MUST supply a named list for this to work.
 Any existing attribute will vanish.
 * **addAttributes(attributes)**
-Similar to setAttributes but will not erase any exsting attributes.
+Similar to setAttributes but will not erase any existing attributes.
 * **hasAttributes()**
 TRUE if any attributes are defined for the element.
 

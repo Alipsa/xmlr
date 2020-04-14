@@ -8,9 +8,9 @@ The jdom project (www.jdom.org) provided a lot of initial inspiration for the ap
     approach in the sense that namespace declarations are just another element attribute and name space prefixes are part of the 
     element name. This might change in the future but for now this is how it is done.
 
-You can create and xmlr Document programatically or by parsing text or a file. 
+You can create and xmlr Document programmatically or by parsing text or a file. 
 
-# Creating the DOM programatically
+# Creating the DOM programmatically
 To create the following xml
 ```
 <table xmlns='http://www.w3.org/TR/html4/'>

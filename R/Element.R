@@ -182,7 +182,7 @@ Element <- setRefClass(
     },
     
     getChild = function(name) {
-      "Retrun the first child element matching the name"
+      "Return the first child element matching the name"
       for (content in contentList) {
         if ("Element" == class(content) & content$getName() == name) {
           #print(paste("Found child element", content))
