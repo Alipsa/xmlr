@@ -1,7 +1,13 @@
+## Resubmission
+This is a resubmission. In this version I have:
+* Fixed the LICENSE to adhere to the standard template format for MIT
+
+
+## Initial submission
 My first submission to CRAN
 
 ## Test environments
- Linux Mint 19.3, R 3.6.0
+ Linux Mint 19.3, R 3.6.3
  Windows 10, R 3.6.1
  
  check_win_release(): R version 3.6.3 (2020-02-29)
