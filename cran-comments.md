@@ -11,6 +11,7 @@ My first submission to CRAN
  Windows 10, R 3.6.1
  
  check_win_release(): R version 3.6.3 (2020-02-29)
+ check_win_devel(): R Under development (unstable) (2020-05-01 r78341
  
  ## R CMD check results
  There were no ERRORs or WARNINGs 
