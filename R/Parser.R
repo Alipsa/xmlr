@@ -74,8 +74,6 @@ Parser <- setRefClass(
       db$startDocument()
 
       for (c in charVector) {
-        #printp0("  looking at: '", c, "'")
-
         # We need to map \r, \r\n, and \n to \n See XML spec section 2.11
         if (c == '\n' & eol) {
           eol <- FALSE

@@ -18,7 +18,6 @@ Stack <- setRefClass(
     },
 
     isEmpty = function() {
-      # printp("Stack size is", size)
       if (m_size == 0) {
         return(TRUE)
       } else {

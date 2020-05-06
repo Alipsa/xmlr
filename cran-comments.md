@@ -1,4 +1,12 @@
-## Resubmission
+## Resubmission 2
+This is a resubmission. In this version I have:
+* Removed all print calls and replaced with warning or message when relevant
+* Add Authors@R field instead if Author and Copyright fields as per feed-back.
+* Add Steven Brandt as contributor as his article in Java World formed the basis of the XMl parser 
+* Add \value tag to utils.Rd
+* Add single quote in Title and Description fields where required in DESCRPTION 
+
+## Resubmission 1
 This is a resubmission. In this version I have:
 * Fixed the LICENSE to adhere to the standard template format for MIT
 

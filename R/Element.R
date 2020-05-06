@@ -26,7 +26,6 @@ Element <- setRefClass(
       if(!is.null(name)) {
         m_name <<- name
       }
-      #print(paste("Element created, name is", private$name))
     },
 
     addContent = function(content) {
@@ -61,9 +60,10 @@ Element <- setRefClass(
       return(NULL)
     },
 
-    cloneContent = function() {
-      printp("Element", "cloneContent()", "Not implemented, should return a list containing detached clones of this parent's content list")
-    },
+    #cloneContent = function() {
+    #  "should return a list containing detached clones of this parent's content list"
+    #  warning("Element", "cloneContent()", "Not implemented")
+    #},
 
     contentIndex = function(content) {
       "Find the position of the content in the contentList or -1 if not found"
@@ -185,7 +185,6 @@ Element <- setRefClass(
       "Return the first child element matching the name"
       for (content in contentList) {
         if ("Element" == class(content) & content$getName() == name) {
-          #print(paste("Found child element", content))
           return (content)
         }
       }

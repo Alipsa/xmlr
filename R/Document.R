@@ -45,18 +45,18 @@ Document <- setRefClass(
     },
 
     getDocType = function() {
-      printp("Document$getDocType() not implemented")
+      warning("Document$getDocType() is not implemented")
     },
 
     setDocType = function(docType) {
-      printp("Document$setDocType(docType) not implemented")
+      warning("Document$setDocType(docType) not implemented")
     },
 
     toString = function() {
       if ("root" %in% names(content) & !is.null(content$root)) {
         return(paste0(content$root$toString()))
       }
-      print("Attempted toString on a rootless document; There is no root element for this document")
+      message("Attempted toString on a rootless document; There is no root element for this document")
       ""
     },
 

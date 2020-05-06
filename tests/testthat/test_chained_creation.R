@@ -29,12 +29,16 @@ test_that("Chained creation and traversion works", {
   document <- createDom()
   rootName <- document$getRootElement()$getName()
   expect_equal(info="Root element from document", rootName, "class")
-  expect_equal(capture_output(printp("Root element :", rootName)), "[1] \"Root element : class\"");
+  expect_equal(capture_output(print(paste("Root element :", rootName))), "[1] \"Root element : class\"");
   classElement <- document$getRootElement();
   studentList <- classElement$getChildren();
   #str(studentList)
   expect_equal(info="Number of elements", length(classElement$getContent()), 2)
   expect_equal(info="Number of children are", length(studentList), 2)
+
+  printp <- function(...) {
+    print(paste(...))
+  }
 
   output <- capture.output({
     for (student in studentList) {
