@@ -1,6 +1,7 @@
 #' xmlr
-#' @description A package for creating and reading and manipulating XML
-#' inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
+#' @description A package for creating, reading and manipulating XML
+#' providing and object model implemented with Reference Classes. This is perhaps especially useful when
+#' dealing with deeply nested XML structures.
 #' @import methods
 #' @docType package
 #' @name xmlr

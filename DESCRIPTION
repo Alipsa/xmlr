@@ -1,16 +1,20 @@
 Package: xmlr
-Version: 0.1.2
-Date: 2020-05-06
+Version: 0.2.0.9001
+Date: 2020-05-09
 Title: Read, Write and Work with 'XML' Data
 Authors@R: c(
     person("Per", "Nyfelt", email = "per@alipsa.se", role = c("cre", "aut")),
     person("Alipsa HB", email = "info@alipsa.se", role = "cph"),
     person("Steven", "Brandt", role = "ctb")
     )
+Author:
+    Per Nyfelt [cre, aut],
+    Alipsa HB [cph],
+    Steven Brandt [ctb]
 Maintainer: Per Nyfelt <per@alipsa.se>
 Depends: R (>= 3.1.0)
 Encoding: UTF-8
-Description: 'XML' package for creating and reading and manipulating 'XML', with an object model based on 'Reference Classes'.
+Description: 'XML' package for creating, reading and manipulating 'XML', with an object model based on 'Reference Classes'.
 License: MIT + file LICENSE
 URL: https://github.com/Alipsa/xmlr
 BugReports: https://github.com/Alipsa/xmlr/issues

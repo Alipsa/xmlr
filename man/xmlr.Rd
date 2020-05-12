@@ -5,8 +5,9 @@
 \alias{xmlr}
 \title{xmlr}
 \description{
-A package for creating and reading and manipulating XML
-inspired by JDOM (http://www.jdom.org/), implemented with Reference Classes.
+A package for creating, reading and manipulating XML
+providing and object model implemented with Reference Classes. This is especially useful when dealing with
+deeply nested XML structures.
 }
 \examples{
 library("xmlr")

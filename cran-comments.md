@@ -1,5 +1,13 @@
 ## Resubmission 2
 This is a resubmission. In this version I have:
+* Added single quotes around object model in Description, 'Reference Classes' are already 
+quoted with undirected single quotes so this is the only other expression that is is not
+commonly understood english that I could think of.
+* Hide some methods that are internal only from being listed in the documentation using #' #'@keywords internal
+* Update NEWS file with all version history
+
+## Resubmission 2
+This is a resubmission. In this version I have:
 * Removed all print calls and replaced with warning or message when relevant
 * Add Authors@R field instead if Author and Copyright fields as per feed-back.
 * Add Steven Brandt as contributor as his article in Java World formed the basis of the XMl parser 

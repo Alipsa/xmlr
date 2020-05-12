@@ -10,22 +10,22 @@ isRc <- function(x, clazz = "refClass") {
   is(x, clazz)
 }
 
-# internal
+#'@keywords internal
 notImplemented <- function(className, methodName, ...) {
   warning(paste(paste0(className, "$", methodName), "Not implemented,", ...))
 }
 
-# internal
+#'@keywords internal
 whitespace <- c(" ", "\t", "\n", "\r" , "\v", "\f")
 
-# internal
+#'@keywords internal
 hasWhiteSpace <- function(string) {
   if (is.null(string)) return(FALSE)
   str <- strsplit(string, "")[[1]]
   any(str %in% whitespace)
 }
 
-# internal
+#'@keywords internal
 isWhiteSpaceChar <- function(char) {
   if (is.null(char)) return(FALSE)
   if (nchar(char, keepNA=TRUE) > 1)  return(hasWhiteSpace(char))
