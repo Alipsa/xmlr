@@ -12,7 +12,7 @@ You can create and xmlr Document programmatically or by parsing text or a file.
 
 # Creating the DOM programmatically
 To create the following xml
-```
+```xml
 <table xmlns='http://www.w3.org/TR/html4/'>
     <tr>
         <td>Apples</td>
@@ -22,7 +22,7 @@ To create the following xml
 
 ```
 You could do something like this:
-```
+```r
  doc <- Document$new()
   root <- Element$new("table")
   root$setAttribute("xmlns", "http://www.w3.org/TR/html4/")
@@ -35,7 +35,7 @@ You could do something like this:
   doc$setRootElement(root)
 ```
 Or you could do like this:
-```
+```r
 doc2 <- parse.xmlstring("
 <table xmlns='http://www.w3.org/TR/html4/'>
     <tr>
