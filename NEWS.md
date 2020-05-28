@@ -2,7 +2,7 @@
 ## version 0.2.0.9000-
 * Added single quotes around object model in Description
 * Hide some methods that are internal only from being listed in the documentation using #' #'@keywords internal
-* Change group name to org.renjin.cran for renjin build to have the same R code work in both Renjin and GNU-R
+* Change group name to org.renjin.cran for the Renjin build to have the same R code work in both Renjin and GNU-R
  
 ## version 0.1.2,  2020-05-06
 * Removed all print calls and replaced with warning or message when relevant
