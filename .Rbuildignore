@@ -11,3 +11,4 @@
 ^Meta$
 ^CRAN-RELEASE$
 ^\.RDataFiles$
+^build$

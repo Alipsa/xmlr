@@ -87,15 +87,27 @@ test_that("Elements can be removed", {
     "</foo>")
   )
   # As we have just removed baz, removing it again should result in an error
-  expect_error(foo$removeContent(baz), "There is no such content belonging to this Element")
+  if (isRenjin()) {
+    expect_error(foo$removeContent(baz), "Exception calling rlang_eval : null")
+  } else {
+    expect_error(foo$removeContent(baz), "There is no such content belonging to this Element")
+  }
 })
 
 test_that("Conversions works and wrong input does not work", {
   e <- Element$new("test")
   attributelist <- c("foo", "bar")
-  expect_error(e$setAttributes(attributelist), "Argument to setAttributes must be a list")
+  if (isRenjin()) {
+    expect_error(e$setAttributes(attributelist),  "Exception calling rlang_eval : null")
+  } else {
+    expect_error(e$setAttributes(attributelist), "Argument to setAttributes must be a list")
+  }
   attributelist <- as.list(attributelist)
-  expect_error(e$setAttributes(attributelist), "All attribute values in the list must be named")
+  if (isRenjin()) {
+    expect_error(e$setAttributes(attributelist),  "Exception calling rlang_eval : null")
+  } else {
+    expect_error(e$setAttributes(attributelist), "All attribute values in the list must be named")
+  }
   # now we name it an all should work
   names(attributelist) <- c("first", "second")
   e$setAttributes(attributelist)

@@ -6,8 +6,8 @@
 \title{xmlr}
 \description{
 A package for creating, reading and manipulating XML
-providing and object model implemented with Reference Classes. This is especially useful when dealing with
-deeply nested XML structures.
+providing and object model implemented with Reference Classes. This is perhaps especially useful when
+dealing with deeply nested XML structures.
 }
 \examples{
 library("xmlr")
