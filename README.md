@@ -52,6 +52,19 @@ it will look like this:
 > 
 ```
 
+# using xmlr
+xmlr is published both to CRAN for use in GNU R and to Maven Central for use in Renjin.
+For cran it is as simple as `install.packages('xmlr')` followed by `library('xmlr')`.
+For renjin add the following to your pom.xml:
+```xml
+<dependency>
+  <groupId>se.alipsa</groupId>
+  <artifactId>xmlr</artifactId>
+  <version>0.2.1</version>
+</dependency>
+```
+...and then `library('se.alipsa:xmlr')`
+
 # Limitations
 Processing instructions, custom entity references, and comments are not yet supported.
 
