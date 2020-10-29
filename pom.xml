@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.renjin.cran</groupId>
+  <groupId>se.alipsa</groupId>
   <artifactId>xmlr</artifactId>
   <version>0.2.0-SNAPHOT</version>
   <packaging>jar</packaging>
@@ -133,9 +133,15 @@
       <plugin>
         <groupId>se.alipsa</groupId>
         <artifactId>renjin-test-maven-plugin</artifactId>
-        <version>1.3.1</version>
+        <version>1.3.6-SNAPSHOT</version>
         <configuration>
           <runSourceScriptsBeforeTests>false</runSourceScriptsBeforeTests>
+          <replaceStringsWhenCopy>
+            <property>
+              <name>library(xmlr)</name>
+              <value>library('se.alipsa:xmlr')</value>
+            </property>
+          </replaceStringsWhenCopy>
         </configuration>
         <executions>
           <!-- Expect_error does not quite work in Renjin. Instead of capturing the stop message it captures

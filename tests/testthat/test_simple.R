@@ -29,5 +29,9 @@ test_that("Element can have Namespace and attribute", {
 })
 
 test_that("Abstract classes cannot be instantiated", {
-  expect_error(AbstractClass$new(), "AbstractClass is an abstract class that can't be initialized.")
+  if (isRenjin()) {
+    expect_error(AbstractClass$new(),  "Exception calling rlang_eval : null")
+  } else {
+    expect_error(AbstractClass$new(), "AbstractClass is an abstract class that can't be initialized.")
+  }
 })
